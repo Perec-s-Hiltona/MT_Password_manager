@@ -3,6 +3,7 @@ package mobile.technology.password_manager.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -37,7 +38,8 @@ public class ActPasswords extends AppCompatActivity {
         fabAddPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // go to page AddPassword
+                Intent actAddPassword = new Intent(".act_add_password");
+                startActivity(actAddPassword);
             }
         });
     }
