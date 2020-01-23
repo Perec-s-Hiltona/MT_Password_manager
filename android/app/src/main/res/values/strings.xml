@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Менеджер паролей</string>
+
+    <!--Home-->
+    <string name="passwords">Мои пароли</string>
+    <string name="passwords_desc">список ваших паролей</string>
+    <string name="settings">Настройки</string>
+    <string name="settings_desc">синхронизация, доступ и т.д.</string>
+
+    <!--Add password-->
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="password_name">Название записи</string>
+    <string name="comment">Комментарий</string>
+    <string name="URL">URL (ссылка)</string>
+
+    <!--General-->
+    <string name="add">Добавить</string>
+</resources>
