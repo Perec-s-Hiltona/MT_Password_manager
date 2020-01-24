@@ -13,7 +13,14 @@
     <string name="password_name">Название записи</string>
     <string name="comment">Комментарий</string>
     <string name="URL">URL (ссылка)</string>
-
+    <string name="add_card_data">Создать запись о карте</string>
+    <string name="bank_name">Название Банка</string>
+    <string name="card_number">Номер карты</string>
+    <string name="card_holder">Владелец карты</string>
+    <string name="card_expiry_month">Срок действия карты (Месяц)</string>
+    <string name="card_expiry_year">Срок действия карты (Год)</string>
+    <string name="card_CVV">Код CVV</string>
+    <string name="card_PIN">PIN код</string>
     <!--General-->
     <string name="add">Добавить</string>
 </resources>
