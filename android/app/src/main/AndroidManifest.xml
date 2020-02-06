@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,InnerclassSeparator"
         tools:replace="android:icon">
-        <!-- for sugar ORM -->
+        <!-- for sugar mobile.technology.password_manager.ORM -->
         <meta-data
             android:name="DATABASE"
             android:value="pass_manager.db" />

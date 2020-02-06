@@ -10,7 +10,7 @@
     <!--Add password-->
     <string name="login">Логин</string>
     <string name="password">Пароль</string>
-    <string name="password_name">Название записи</string>
+    <string name="key_name">Название записи</string>
     <string name="comment">Комментарий</string>
     <string name="URL">URL (ссылка)</string>
     <string name="add_card_data">Создать запись о карте</string>
@@ -23,4 +23,8 @@
     <string name="card_PIN">PIN код</string>
     <!--General-->
     <string name="add">Добавить</string>
+
+    <!--Message-->
+    <string name="msg_add_data">Заполните поле</string>
+    <string name="msg_ok">OK</string>
 </resources>
