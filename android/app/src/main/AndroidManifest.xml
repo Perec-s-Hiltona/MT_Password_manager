@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,InnerclassSeparator"
         tools:replace="android:icon">
+
         <!-- for sugar mobile.technology.password_manager.ORM -->
         <meta-data
             android:name="DATABASE"
@@ -34,8 +35,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- Passwords -->
+        </activity> <!-- Passwords -->
         <activity
             android:name=".activities.ActPasswords"
             android:parentActivityName=".activities.ActHome"
@@ -45,20 +45,26 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-        <!--Add Password-->
+        </activity> <!-- Add Password -->
         <activity
             android:name=".activities.ActAddPassword"
             android:parentActivityName=".activities.ActPasswords"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name=".act_add_password"/>
+                <action android:name=".act_add_password" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- Add password phrase -->
+        <activity android:name=".activities.ActAddPasswordPhrase"
+            android:parentActivityName=".activities.ActPasswords"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name=".act_add_password_phrase"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
-
         </activity>
 
     </application>
-
 </manifest>

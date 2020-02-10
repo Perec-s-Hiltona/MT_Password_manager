@@ -12,12 +12,17 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
+
+import mobile.technology.password_manager.ORM.AppSettings;
 import mobile.technology.password_manager.R;
 
 public class ActPasswords extends AppCompatActivity {
 
     private FloatingActionButton fabAddPassword;
     private Toolbar toolbarPasswords;
+    String passwordPhrase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,5 +47,25 @@ public class ActPasswords extends AppCompatActivity {
                 startActivity(actAddPassword);
             }
         });
+
+        getPasswordPhrase();
+    }
+
+    private void getPasswordPhrase(){
+
+        try {
+            List<AppSettings> appSettingsList = AppSettings.listAll(AppSettings.class);
+
+            for(AppSettings appSettings : appSettingsList){
+                passwordPhrase = appSettings.getPasswordPhrase();
+            }
+
+            if(passwordPhrase.length() == 0){
+                //
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

@@ -21,6 +21,8 @@
     <string name="card_expiry_year">Срок действия карты (Год)</string>
     <string name="card_CVV">Код CVV</string>
     <string name="card_PIN">PIN код</string>
+
+    <string name="password_phrase_desc">Фраза для шифрования</string>
     <!--General-->
     <string name="add">Добавить</string>
 
