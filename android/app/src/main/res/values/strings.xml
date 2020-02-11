@@ -22,11 +22,16 @@
     <string name="card_CVV">Код CVV</string>
     <string name="card_PIN">PIN код</string>
 
-    <string name="password_phrase_desc">Фраза для шифрования</string>
+    <!--Add password phrase-->
+    <string name="password_key_desc">Ключевое слово</string>
+    <string name="add_password_phrase">Добавить Ключевое слово</string>
+    <string name="add_password_phrase_desc">С помощью Ключевого слова вы сможете получить доступ к вашим паролям</string>
+
     <!--General-->
     <string name="add">Добавить</string>
 
     <!--Message-->
     <string name="msg_add_data">Заполните поле</string>
     <string name="msg_ok">OK</string>
+    <string name="msg_add_password_key">Добавьте Ключ к паролям</string>
 </resources>

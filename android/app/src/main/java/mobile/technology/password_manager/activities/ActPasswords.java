@@ -14,6 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import mobile.technology.password_manager.ORM.AppSettings;
 import mobile.technology.password_manager.R;
 
@@ -21,7 +22,7 @@ public class ActPasswords extends AppCompatActivity {
 
     private FloatingActionButton fabAddPassword;
     private Toolbar toolbarPasswords;
-    String passwordPhrase;
+    String passwordKey;
 
 
     @Override
@@ -43,25 +44,29 @@ public class ActPasswords extends AppCompatActivity {
         fabAddPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                checkExistPasswordKey();
+
                 Intent actAddPassword = new Intent(".act_add_password");
                 startActivity(actAddPassword);
             }
         });
-
-        getPasswordPhrase();
     }
 
-    private void getPasswordPhrase(){
+    private void checkExistPasswordKey(){
 
         try {
+
             List<AppSettings> appSettingsList = AppSettings.listAll(AppSettings.class);
 
-            for(AppSettings appSettings : appSettingsList){
-                passwordPhrase = appSettings.getPasswordPhrase();
-            }
+            if(appSettingsList.size() == 0){
 
-            if(passwordPhrase.length() == 0){
-                //
+                SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
+                alertDialog.setTitleText((String) getResources().getText(R.string.msg_add_password_key));
+                alertDialog.setContentText((String)getResources().getText(R.string.key_name));
+                alertDialog.setConfirmText((String) getResources().getText(R.string.msg_ok));
+                alertDialog.show();
+
             }
 
         } catch (Exception e){
