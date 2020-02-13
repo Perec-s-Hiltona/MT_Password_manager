@@ -5,7 +5,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -18,9 +17,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import mobile.technology.password_manager.R;
@@ -132,7 +128,7 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
         if(keyName.length() == 0){
             SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
             alertDialog.setTitleText((String) getResources().getText(R.string.msg_add_data));
-            alertDialog.setContentText((String)getResources().getText(R.string.key_name));
+            alertDialog.setContentText((String)getResources().getText(R.string.password_name));
             alertDialog.setConfirmText((String) getResources().getText(R.string.msg_ok));
             alertDialog.show();
         }else {

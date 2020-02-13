@@ -10,7 +10,7 @@
     <!--Add password-->
     <string name="login">Логин</string>
     <string name="password">Пароль</string>
-    <string name="key_name">Название записи</string>
+    <string name="password_name">Название записи</string>
     <string name="comment">Комментарий</string>
     <string name="URL">URL (ссылка)</string>
     <string name="add_card_data">Создать запись о карте</string>
@@ -24,8 +24,6 @@
 
     <!--Add password phrase-->
     <string name="password_key_desc">Ключевое слово</string>
-    <string name="add_password_phrase">Добавить Ключевое слово</string>
-    <string name="add_password_phrase_desc">С помощью Ключевого слова вы сможете получить доступ к вашим паролям</string>
 
     <!--General-->
     <string name="add">Добавить</string>
@@ -33,5 +31,9 @@
     <!--Message-->
     <string name="msg_add_data">Заполните поле</string>
     <string name="msg_ok">OK</string>
-    <string name="msg_add_password_key">Добавьте Ключ к паролям</string>
+    <string name="msg_add_password_key">Добавьте Ключевое слово</string>
+    <string name="msg_add_password_key_desc">Ключевое слово необходимо для доступа к паролям</string>
+    <string name="msg_change_keyword">Измените Ключевое слово</string>
+    <string name="msg_change_keyword_desc">Для надежности Ключевое слово должно быть более 8 символов и содержать буквы,цифры и символы(например, ! или ?)</string>
+
 </resources>

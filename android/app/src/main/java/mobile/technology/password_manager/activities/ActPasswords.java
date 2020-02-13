@@ -46,9 +46,6 @@ public class ActPasswords extends AppCompatActivity {
             public void onClick(View v) {
 
                 checkExistPasswordKey();
-
-                Intent actAddPassword = new Intent(".act_add_password");
-                startActivity(actAddPassword);
             }
         });
     }
@@ -59,18 +56,44 @@ public class ActPasswords extends AppCompatActivity {
 
             List<AppSettings> appSettingsList = AppSettings.listAll(AppSettings.class);
 
-            if(appSettingsList.size() == 0){
+            if(appSettingsList.size() > 0){
 
-                SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
-                alertDialog.setTitleText((String) getResources().getText(R.string.msg_add_password_key));
-                alertDialog.setContentText((String)getResources().getText(R.string.key_name));
-                alertDialog.setConfirmText((String) getResources().getText(R.string.msg_ok));
-                alertDialog.show();
+                for (AppSettings appSettings: appSettingsList){
+                    String passwordKey = appSettings.getPasswordKey();
 
+                    if(passwordKey.length() > 0){
+                        Intent actAddPassword = new Intent(".act_add_password");
+                        startActivity(actAddPassword);
+                    } else {
+                        goActAddPasswordKey();
+                    }
+                }
+
+            } else {
+                goActAddPasswordKey();
             }
 
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void goActAddPasswordKey(){
+
+        final SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
+        alertDialog.setTitleText((String) getResources().getText(R.string.msg_add_password_key));
+        alertDialog.setContentText((String)getResources().getText(R.string.msg_add_password_key_desc));
+        alertDialog.setConfirmText((String) getResources().getText(R.string.msg_ok));
+
+        alertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                Intent intentAddPasswordKey = new Intent(".act_add_password_key");
+                startActivity(intentAddPasswordKey);
+
+                alertDialog.dismissWithAnimation();
+            }
+        });
+        alertDialog.show();
     }
 }

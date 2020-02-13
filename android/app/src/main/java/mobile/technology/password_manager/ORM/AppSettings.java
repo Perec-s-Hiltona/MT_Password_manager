@@ -14,7 +14,7 @@ public class AppSettings extends SugarRecord {
         this.passwordPhrase = passwordPhrase;
     }
 
-    public String getPasswordPhrase() {
+    public String getPasswordKey() {
         return passwordPhrase;
     }
 
