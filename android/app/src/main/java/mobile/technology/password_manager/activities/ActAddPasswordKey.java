@@ -3,6 +3,7 @@ package mobile.technology.password_manager.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,9 +12,8 @@ import android.widget.Toast;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputEditText;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -55,39 +55,74 @@ public class ActAddPasswordKey extends AppCompatActivity {
 
         String passwordKey = edtPasswordKey.getText().toString().trim();
 
-        if(passwordKey.length() < 8){
-            SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
-            alertDialog.setTitleText((String) getResources().getText(R.string.msg_change_keyword));
-            alertDialog.setContentText((String)getResources().getText(R.string.msg_change_keyword_desc));
-            alertDialog.setConfirmText((String) getResources().getText(R.string.msg_ok));
-            alertDialog.show();
-        }else {
-            boolean existDigit = false;
-            boolean existSymbol = false;
+        if(passwordKey != null){
 
-            for (int i = 0; i < passwordKey.length(); i++){
-                Character letter = passwordKey.charAt(i);
-                existDigit = Character.isDigit(letter);
-                //TODO
-                // find symbols in password key
-                int symbol_1 = letter.toString().indexOf("!");
-                int symbol_2 = letter.toString().indexOf("@");
-                int symbol_3 = letter.toString().indexOf("$");
+            if(checkPasswordKeyCondition(passwordKey)){
 
-                if(symbol_1 != -1 || symbol_2 != -1 || symbol_3 != -1){
-                    existSymbol = true;
-                }
-
-                if(existDigit && existSymbol){
-                    Toast.makeText(this, "exist Digit and Symbol", Toast.LENGTH_SHORT).show();
-                    break;
-                }
-            }
-            int index_int_0 = passwordKey.indexOf(0);
-
-            if(index_int_0 != -1){
-                Toast.makeText(this, "exist 0", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private boolean checkPasswordKeyCondition(String passwordKey){
+
+        boolean existDigit = false;
+        boolean existSymbol = false;
+
+        if(passwordKey.length() >= 8 ){
+
+            // check exist numbers in string
+            List<String> listDigits = Arrays.asList(
+                    "0","1","2","3","4","5","6","7","8","9");
+
+            for (String digit: listDigits){
+
+                if(passwordKey.contains(digit)){
+                    existDigit = true;
+                }
+            }
+
+            // check symbol in string
+            List<String> listSymbols = Arrays.asList(
+                    "!", "@", "#", "$", "%", "^", "&", "*", "(",")",
+                    "_", "-", "+", "=", "±", "{", "}", ":", ";","|",
+                    "~", "`", "[","`", "]"  ,"<", ">", "§");
+
+            for(String symbol : listSymbols){
+
+                if(passwordKey.contains(symbol)){
+                    existSymbol = true;
+                }
+            }
+
+
+            if(existDigit && existSymbol){
+
+                SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);
+                alertDialog.setTitleText((String)getResources().getText(R.string.msg_good_keyword));
+                alertDialog.show();
+
+                return true;
+
+            } else {
+
+                showMessageWarning();
+            }
+        } else {
+
+            showMessageWarning();
+
+            return false;
+        }
+
+        return false;
+    }
+
+    private void showMessageWarning(){
+
+        SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
+        alertDialog.setTitleText((String) getResources().getText(R.string.msg_change_keyword));
+        alertDialog.setContentText((String)getResources().getText(R.string.msg_change_keyword_desc));
+        alertDialog.setConfirmText((String) getResources().getText(R.string.msg_ok));
+        alertDialog.show();
     }
 }
