@@ -20,7 +20,7 @@
             android:value="pass_manager.db" />
         <meta-data
             android:name="VERSION"
-            android:value="1" />
+            android:value="2" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="false" />

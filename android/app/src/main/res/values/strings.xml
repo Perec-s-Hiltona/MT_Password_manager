@@ -26,7 +26,8 @@
     <string name="password_key_desc">Ключевое слово</string>
 
     <!--General-->
-    <string name="add">Добавить</string>
+    <string name="msg_add">Добавить</string>
+    <string name="msg_saved">Сохранено</string>
 
     <!--Message-->
     <string name="msg_add_data">Заполните поле</string>

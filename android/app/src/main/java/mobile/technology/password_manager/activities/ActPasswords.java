@@ -41,6 +41,7 @@ public class ActPasswords extends AppCompatActivity {
         // fab
         fabAddPassword = (FloatingActionButton)findViewById(R.id.fab_add_password);
         YoYo.with(Techniques.Landing).duration(2000).repeat(0).playOn(fabAddPassword);
+
         fabAddPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,16 +59,8 @@ public class ActPasswords extends AppCompatActivity {
 
             if(appSettingsList.size() > 0){
 
-                for (AppSettings appSettings: appSettingsList){
-                    String passwordKey = appSettings.getPasswordKey();
-
-                    if(passwordKey.length() > 0){
-                        Intent actAddPassword = new Intent(".act_add_password");
-                        startActivity(actAddPassword);
-                    } else {
-                        goActAddPasswordKey();
-                    }
-                }
+                Intent actAddPassword = new Intent(".act_add_password");
+                startActivity(actAddPassword);
 
             } else {
                 goActAddPasswordKey();

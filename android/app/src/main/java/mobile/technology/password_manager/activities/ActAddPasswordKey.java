@@ -3,11 +3,9 @@ package mobile.technology.password_manager.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -18,6 +16,7 @@ import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import mobile.technology.password_manager.R;
+import mobile.technology.password_manager.general.MasterEncrypt;
 
 public class ActAddPasswordKey extends AppCompatActivity {
 
@@ -45,13 +44,17 @@ public class ActAddPasswordKey extends AppCompatActivity {
         fabSavePasswordKey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                savePasswordKey();
+                try {
+                    savePasswordKey();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
     }
 
-    private void savePasswordKey(){
+    private void savePasswordKey() throws Exception {
 
         String passwordKey = edtPasswordKey.getText().toString().trim();
 
@@ -59,9 +62,20 @@ public class ActAddPasswordKey extends AppCompatActivity {
 
             if(checkPasswordKeyCondition(passwordKey)){
 
+                MasterEncrypt masterEncrypt = new MasterEncrypt();
+
+                // save and encrypt password key
+                if(masterEncrypt.encryptPasswordKey(passwordKey)){
+
+                    SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);
+                    alertDialog.setTitleText((String)getResources().getText(R.string.msg_saved));
+                    alertDialog.setContentText((String)getResources().getText(R.string.msg_good_keyword));
+                    alertDialog.show();
+                }
             }
         }
     }
+
 
     private boolean checkPasswordKeyCondition(String passwordKey){
 
@@ -96,10 +110,6 @@ public class ActAddPasswordKey extends AppCompatActivity {
 
 
             if(existDigit && existSymbol){
-
-                SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);
-                alertDialog.setTitleText((String)getResources().getText(R.string.msg_good_keyword));
-                alertDialog.show();
 
                 return true;
 
