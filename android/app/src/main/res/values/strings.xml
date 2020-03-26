@@ -24,10 +24,12 @@
 
     <!--Add password phrase-->
     <string name="password_key_desc">Ключевое слово</string>
+    <string name="main_password_key">MainPasswordKey</string>
 
     <!--General-->
     <string name="msg_add">Добавить</string>
     <string name="msg_saved">Сохранено</string>
+    <string name="empty_field">Пустое значение</string>
 
     <!--Message-->
     <string name="msg_add_data">Заполните поле</string>

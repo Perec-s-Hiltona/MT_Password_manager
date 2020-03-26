@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import mobile.technology.password_manager.ORM.AppSettings;
 import mobile.technology.password_manager.R;
 import mobile.technology.password_manager.general.MasterEncrypt;
 
@@ -64,14 +65,17 @@ public class ActAddPasswordKey extends AppCompatActivity {
 
                 MasterEncrypt masterEncrypt = new MasterEncrypt();
 
-                // save and encrypt password key
-                if(masterEncrypt.encryptPasswordKey(passwordKey)){
+                // encrypt password key and save in Database
+                String encryptPasswordKey = masterEncrypt.encryptPasswordKey(passwordKey);
+                AppSettings appSettings = new AppSettings();
+                appSettings.setTypePassword((String) getResources().getText(R.string.main_password_key));
+                appSettings.setValuePassword(encryptPasswordKey);
+                appSettings.save();
 
-                    SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);
-                    alertDialog.setTitleText((String)getResources().getText(R.string.msg_saved));
-                    alertDialog.setContentText((String)getResources().getText(R.string.msg_good_keyword));
-                    alertDialog.show();
-                }
+                SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);
+                alertDialog.setTitleText((String)getResources().getText(R.string.msg_saved));
+                alertDialog.setContentText((String)getResources().getText(R.string.msg_good_keyword));
+                alertDialog.show();
             }
         }
     }

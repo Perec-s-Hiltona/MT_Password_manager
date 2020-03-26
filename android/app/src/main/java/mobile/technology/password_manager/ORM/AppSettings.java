@@ -26,6 +26,7 @@ public class AppSettings extends SugarRecord {
     }
 
     public String getValuePassword() {
+
         return valuePassword;
     }
 

@@ -19,7 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import mobile.technology.password_manager.ORM.AppSettings;
 import mobile.technology.password_manager.R;
+import mobile.technology.password_manager.general.MasterEncrypt;
 
 public class ActAddPassword extends AppCompatActivity implements  CompoundButton.OnCheckedChangeListener{
 
@@ -43,8 +45,17 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
 
     private CardView cardViewBankCard;
 
+    String login, password, url,
+            bankName, cardNumber, cardHolder, cardExpiryMonth, cardExpiryYear, cardCVV, cardPIN,
+            comment;
+
+    String encryptMainPasswordKey;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        AppSettings appSettings = new AppSettings();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_add_password);
 
@@ -104,7 +115,11 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
         fabSavePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                savePassword();
+                try {
+                    savePassword();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -121,7 +136,7 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
         }
     }
 
-    private void savePassword(){
+    private void savePassword() throws Exception {
         Toast.makeText(this, "Pressed SAVE", Toast.LENGTH_SHORT).show();
         String keyName = edtKeyName.getText().toString();
 
@@ -134,24 +149,74 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
             alertDialog.show();
 
         }else {
-            //TODO encrypt with passwordKey passwords
 
-            String login = edtLogin.getText().toString();
-            String password = edtPassword.getText().toString();
-            String url = edtURL.getText().toString();
+            login = edtLogin.getText().toString();
+            password = edtPassword.getText().toString();
+            url = edtURL.getText().toString();
 
             if (switchAddBankData.isChecked()){
 
-                String bankName = edtBankName.getText().toString();
-                String cardNumber = edtCardNumber.getText().toString();
-                String cardHolder = edtCardHolder.getText().toString();
-                String cardExpiryMonth = edtCardExpiryMonth.getText().toString();
-                String cardExpiryYear = edtCardExpiryYear.getText().toString();
-                String cardCVV = edtCardCVV.getText().toString();
-                String cardPIN = edtCardPIN.getText().toString();
+                bankName = edtBankName.getText().toString();
+                cardNumber = edtCardNumber.getText().toString();
+                cardHolder = edtCardHolder.getText().toString();
+                cardExpiryMonth = edtCardExpiryMonth.getText().toString();
+                cardExpiryYear = edtCardExpiryYear.getText().toString();
+                cardCVV = edtCardCVV.getText().toString();
+                cardPIN = edtCardPIN.getText().toString();
             }
 
-            String comment = edtComment.getText().toString();
+            comment = edtComment.getText().toString();
+
+            // get main password key
+            List<AppSettings> appSettingsList = AppSettings.listAll(AppSettings.class);
+
+            for (AppSettings appSettings : appSettingsList){
+
+                encryptMainPasswordKey = appSettings.getValuePassword();
+                System.out.println("encrypted password key :"+ encryptMainPasswordKey);
+            }
+
+            //encrypt rows and save in DB
+            if(login.length() < 0){
+                login = (String) getResources().getText(R.string.empty_field);
+            }
+            if(password.length() < 0){
+                password = (String)getResources().getText(R.string.empty_field);
+            }
+            if(url.length() < 0){
+                url = (String)getResources().getText(R.string.empty_field);
+            }
+
+            if(switchAddBankData.isChecked()){
+                if(bankName.length() < 0){
+                    bankName = (String)getResources().getText(R.string.empty_field);
+                }
+                if(cardNumber.length() < 0){
+                    cardNumber = (String)getResources().getText(R.string.empty_field);
+                }
+                if(cardHolder.length() < 0){
+                    cardHolder = (String)getResources().getText(R.string.empty_field);
+                }
+                if(cardExpiryMonth.length() < 0){
+                    cardExpiryMonth = (String)getResources().getText(R.string.empty_field);
+                }
+                if(cardExpiryYear.length() < 0){
+                    cardExpiryYear = (String)getResources().getText(R.string.empty_field);
+                }
+                if(cardCVV.length() < 0){
+                    cardCVV = (String)getResources().getText(R.string.empty_field);
+                }
+                if(cardPIN.length() < 0){
+                    cardPIN = (String)getResources().getText(R.string.empty_field);
+                }
+            }
+            if(comment.length() < 0){
+                comment = (String)getResources().getText(R.string.empty_field);
+            }
+
+            // encrypt fields
+            //TODO
+
         }
     }
 }
