@@ -19,7 +19,7 @@ import mobile.technology.password_manager.ORM.AppSettings;
 import mobile.technology.password_manager.R;
 import mobile.technology.password_manager.general.MasterEncrypt;
 
-public class ActAddPasswordKey extends AppCompatActivity {
+public class ActAddMainPassword extends AppCompatActivity {
 
     private Toolbar toolbar;
     private FloatingActionButton fabSavePasswordKey;
@@ -29,7 +29,7 @@ public class ActAddPasswordKey extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_add_password_key);
+        setContentView(R.layout.act_add_main_password);
 
         toolbar = findViewById(R.id.toolbar_add_password_key);
         toolbar.setTitle(getResources().getText(R.string.msg_add_password_key));
@@ -64,12 +64,15 @@ public class ActAddPasswordKey extends AppCompatActivity {
             if(checkPasswordKeyCondition(passwordKey)){
 
                 MasterEncrypt masterEncrypt = new MasterEncrypt();
+                String encryptedMainPassword = masterEncrypt.encryptData(passwordKey, masterEncrypt.getZeroPassword());
+
+                System.out.println("encr data:"+ encryptedMainPassword);
 
                 // encrypt password key and save in Database
-                String encryptPasswordKey = masterEncrypt.encryptPasswordKey(passwordKey);
+
                 AppSettings appSettings = new AppSettings();
                 appSettings.setTypePassword((String) getResources().getText(R.string.main_password_key));
-                appSettings.setValuePassword(encryptPasswordKey);
+                appSettings.setValuePassword(encryptedMainPassword);
                 appSettings.save();
 
                 SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);

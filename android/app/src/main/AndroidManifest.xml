@@ -57,11 +57,11 @@
             </intent-filter>
         </activity>
         <!-- Add password phrase -->
-        <activity android:name=".activities.ActAddPasswordKey"
+        <activity android:name=".activities.ActAddMainPassword"
             android:parentActivityName=".activities.ActPasswords"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name=".act_add_password_key"/>
+                <action android:name=".act_add_main_password"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>

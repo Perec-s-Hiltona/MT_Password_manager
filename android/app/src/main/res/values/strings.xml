@@ -30,6 +30,8 @@
     <string name="msg_add">Добавить</string>
     <string name="msg_saved">Сохранено</string>
     <string name="empty_field">Пустое значение</string>
+    <string name="msg_check_correct_data">Проверьте корректность данных</string>
+    <string name="card_expiry_month_incorrect">некорректно</string>
 
     <!--Message-->
     <string name="msg_add_data">Заполните поле</string>

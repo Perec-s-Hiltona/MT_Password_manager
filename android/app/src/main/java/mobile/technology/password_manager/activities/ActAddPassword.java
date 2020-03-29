@@ -9,17 +9,19 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.time.Year;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import mobile.technology.password_manager.ORM.AppSettings;
+import mobile.technology.password_manager.ORM.KeyORM;
 import mobile.technology.password_manager.R;
 import mobile.technology.password_manager.general.MasterEncrypt;
 
@@ -45,11 +47,13 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
 
     private CardView cardViewBankCard;
 
+    MasterEncrypt masterEncrypt;
+
     String login, password, url,
             bankName, cardNumber, cardHolder, cardExpiryMonth, cardExpiryYear, cardCVV, cardPIN,
             comment;
 
-    String encryptMainPasswordKey;
+    String encryptedMainPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +126,8 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
                 }
             }
         });
+
+        masterEncrypt = new MasterEncrypt();
     }
 
     // for switcher
@@ -137,7 +143,7 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
     }
 
     private void savePassword() throws Exception {
-        Toast.makeText(this, "Pressed SAVE", Toast.LENGTH_SHORT).show();
+
         String keyName = edtKeyName.getText().toString();
 
         if(keyName.length() == 0){
@@ -167,13 +173,11 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
 
             comment = edtComment.getText().toString();
 
-            // get main password key
+            // get main password from DB
             List<AppSettings> appSettingsList = AppSettings.listAll(AppSettings.class);
 
             for (AppSettings appSettings : appSettingsList){
-
-                encryptMainPasswordKey = appSettings.getValuePassword();
-                System.out.println("encrypted password key :"+ encryptMainPasswordKey);
+                encryptedMainPassword = appSettings.getValuePassword();
             }
 
             //encrypt rows and save in DB
@@ -199,24 +203,99 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
                 }
                 if(cardExpiryMonth.length() < 0){
                     cardExpiryMonth = (String)getResources().getText(R.string.empty_field);
+                }else if(Integer.parseInt(cardExpiryMonth) >12){
+
+                    SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
+                    alertDialog.setTitleText((String) getResources().getText(R.string.msg_check_correct_data));
+                    alertDialog.setContentText((String)getResources().getText(R.string.card_expiry_month));
+                    alertDialog.setConfirmText((String)getResources().getText(R.string.msg_ok));
+                    alertDialog.show();
+                    return;
                 }
+
+                int currentYear = Calendar.getInstance().get(Calendar.YEAR);
                 if(cardExpiryYear.length() < 0){
                     cardExpiryYear = (String)getResources().getText(R.string.empty_field);
+                }else if(Integer.parseInt(cardExpiryYear)<currentYear){
+                    SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
+                    alertDialog.setTitleText((String) getResources().getText(R.string.msg_check_correct_data));
+                    alertDialog.setContentText((String)getResources().getText(R.string.card_expiry_year));
+                    alertDialog.setConfirmText((String)getResources().getText(R.string.msg_ok));
+                    alertDialog.show();
+                    return;
                 }
+
                 if(cardCVV.length() < 0){
                     cardCVV = (String)getResources().getText(R.string.empty_field);
                 }
                 if(cardPIN.length() < 0){
                     cardPIN = (String)getResources().getText(R.string.empty_field);
                 }
+            }else {
+                bankName = (String)getResources().getText(R.string.empty_field);
+                cardNumber = (String)getResources().getText(R.string.empty_field);
+                cardHolder = (String)getResources().getText(R.string.empty_field);
+                cardExpiryMonth = (String)getResources().getText(R.string.empty_field);
+                cardExpiryYear = (String)getResources().getText(R.string.empty_field);
+                cardCVV = (String)getResources().getText(R.string.empty_field);
+                cardPIN = (String)getResources().getText(R.string.empty_field);
             }
             if(comment.length() < 0){
                 comment = (String)getResources().getText(R.string.empty_field);
             }
 
-            // encrypt fields
-            //TODO
+            String decryptedMainPassword = masterEncrypt.decryptData(encryptedMainPassword,masterEncrypt.getZeroPassword());
 
+            // encrypt fields
+            String encKeyName = masterEncrypt.encryptData(keyName, decryptedMainPassword);
+            String encLogin = masterEncrypt.encryptData(login,decryptedMainPassword);
+            String encPassword = masterEncrypt.encryptData(password, decryptedMainPassword);
+            String encURL = masterEncrypt.encryptData(url, decryptedMainPassword);
+
+            String encBankName = masterEncrypt.encryptData(bankName,decryptedMainPassword);
+            String encCardNumber = masterEncrypt.encryptData(cardNumber,decryptedMainPassword);
+            String encCardHolder = masterEncrypt.encryptData(cardHolder,decryptedMainPassword);
+            String encCardExpiryMonth = masterEncrypt.encryptData(cardExpiryMonth,decryptedMainPassword);
+            String encCardExpiryYear = masterEncrypt.encryptData(cardExpiryYear,decryptedMainPassword);
+            String encCardCVV = masterEncrypt.encryptData(cardCVV,decryptedMainPassword);
+            String encCardPIN = masterEncrypt.encryptData(cardPIN,decryptedMainPassword);
+
+            String encComment = masterEncrypt.encryptData(comment,decryptedMainPassword);
+
+            // save encrypted data in DB
+            KeyORM keyORM = new KeyORM();
+            keyORM.setKeyName(encKeyName);
+            keyORM.setLogin(encLogin);
+            keyORM.setPassword(encPassword);
+            keyORM.setURL(encURL);
+            keyORM.setBankName(encBankName);
+            keyORM.setCardNumber(encCardNumber);
+            keyORM.setCardHolder(encCardHolder);
+            keyORM.setCardExpiryMonth(encCardExpiryMonth);
+            keyORM.setCardExpiryYear(encCardExpiryYear);
+            keyORM.setCardCVV(encCardCVV);
+            keyORM.setCardPIN(encCardPIN);
+            keyORM.setComment(encComment);
+
+            SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);
+            alertDialog.setTitleText((String)getResources().getText(R.string.msg_saved));
+            alertDialog.show();
+
+            // clear edit texts
+            edtKeyName.setText("");
+            edtLogin.setText("");
+            edtPassword.setText("");
+            edtURL.setText("");
+
+            edtBankName.setText("");
+            edtCardNumber.setText("");
+            edtCardHolder.setText("");
+            edtCardExpiryMonth.setText("");
+            edtCardExpiryYear.setText("");
+            edtCardCVV.setText("");
+            edtCardPIN.setText("");
+
+            edtComment.setText("");
         }
     }
 }

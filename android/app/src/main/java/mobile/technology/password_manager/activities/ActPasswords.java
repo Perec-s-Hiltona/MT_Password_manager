@@ -81,7 +81,7 @@ public class ActPasswords extends AppCompatActivity {
         alertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
             @Override
             public void onClick(SweetAlertDialog sweetAlertDialog) {
-                Intent intentAddPasswordKey = new Intent(".act_add_password_key");
+                Intent intentAddPasswordKey = new Intent(".act_add_main_password");
                 startActivity(intentAddPasswordKey);
 
                 alertDialog.dismissWithAnimation();
