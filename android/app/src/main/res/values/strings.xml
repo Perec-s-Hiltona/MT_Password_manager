@@ -22,6 +22,11 @@
     <string name="card_CVV">Код CVV</string>
     <string name="card_PIN">PIN код</string>
 
+    <!--Passwords-->
+    <string name="key_name">Запись</string>
+    <string name="key_number">номер записи</string>
+    <string name="card_expiry_date">Срок действия карты</string>
+
     <!--Add password phrase-->
     <string name="password_key_desc">Ключевое слово</string>
     <string name="main_password_key">MainPasswordKey</string>
@@ -32,6 +37,7 @@
     <string name="empty_field">Пустое значение</string>
     <string name="msg_check_correct_data">Проверьте корректность данных</string>
     <string name="card_expiry_month_incorrect">некорректно</string>
+    <string name="bank_data">Запись банковской информации</string>
 
     <!--Message-->
     <string name="msg_add_data">Заполните поле</string>

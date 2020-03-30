@@ -14,7 +14,6 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -134,11 +133,15 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if(isChecked){
+
             cardViewBankCard.setVisibility(View.VISIBLE);
             viewLine5.setVisibility(View.VISIBLE);
+
         }else {
+
             cardViewBankCard.setVisibility(View.GONE);
             viewLine5.setVisibility(View.GONE);
+
         }
     }
 
@@ -192,18 +195,21 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
             }
 
             if(switchAddBankData.isChecked()){
-                if(bankName.length() < 0){
-                    bankName = (String)getResources().getText(R.string.empty_field);
-                }
-                if(cardNumber.length() < 0){
-                    cardNumber = (String)getResources().getText(R.string.empty_field);
-                }
-                if(cardHolder.length() < 0){
-                    cardHolder = (String)getResources().getText(R.string.empty_field);
-                }
-                if(cardExpiryMonth.length() < 0){
-                    cardExpiryMonth = (String)getResources().getText(R.string.empty_field);
-                }else if(Integer.parseInt(cardExpiryMonth) >12){
+
+                int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+
+                if(bankName.length() < 1 || cardNumber.length() < 1 || cardHolder.length() < 1 ||
+                    cardExpiryMonth.length() < 1 || cardExpiryYear.length() < 1 ||
+                    cardCVV.length() < 1 || cardPIN.length() < 1){
+
+                    SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
+                    alertDialog.setTitleText((String) getResources().getText(R.string.msg_check_correct_data));
+                    alertDialog.setContentText((String)getResources().getText(R.string.bank_data));
+                    alertDialog.setConfirmText((String)getResources().getText(R.string.msg_ok));
+                    alertDialog.show();
+                    return;
+
+                } else if (Integer.parseInt(edtCardExpiryMonth.getText().toString()) > 12){
 
                     SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
                     alertDialog.setTitleText((String) getResources().getText(R.string.msg_check_correct_data));
@@ -211,12 +217,9 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
                     alertDialog.setConfirmText((String)getResources().getText(R.string.msg_ok));
                     alertDialog.show();
                     return;
-                }
 
-                int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-                if(cardExpiryYear.length() < 0){
-                    cardExpiryYear = (String)getResources().getText(R.string.empty_field);
-                }else if(Integer.parseInt(cardExpiryYear)<currentYear){
+                } else if (Integer.parseInt(edtCardExpiryYear.getText().toString()) < currentYear){
+
                     SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
                     alertDialog.setTitleText((String) getResources().getText(R.string.msg_check_correct_data));
                     alertDialog.setContentText((String)getResources().getText(R.string.card_expiry_year));
@@ -224,21 +227,6 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
                     alertDialog.show();
                     return;
                 }
-
-                if(cardCVV.length() < 0){
-                    cardCVV = (String)getResources().getText(R.string.empty_field);
-                }
-                if(cardPIN.length() < 0){
-                    cardPIN = (String)getResources().getText(R.string.empty_field);
-                }
-            }else {
-                bankName = (String)getResources().getText(R.string.empty_field);
-                cardNumber = (String)getResources().getText(R.string.empty_field);
-                cardHolder = (String)getResources().getText(R.string.empty_field);
-                cardExpiryMonth = (String)getResources().getText(R.string.empty_field);
-                cardExpiryYear = (String)getResources().getText(R.string.empty_field);
-                cardCVV = (String)getResources().getText(R.string.empty_field);
-                cardPIN = (String)getResources().getText(R.string.empty_field);
             }
             if(comment.length() < 0){
                 comment = (String)getResources().getText(R.string.empty_field);

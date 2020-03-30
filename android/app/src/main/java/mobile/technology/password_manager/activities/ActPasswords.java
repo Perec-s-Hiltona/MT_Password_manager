@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -22,11 +21,10 @@ public class ActPasswords extends AppCompatActivity {
 
     private FloatingActionButton fabAddPassword;
     private Toolbar toolbarPasswords;
-    String passwordKey;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_passwords);
 
@@ -49,6 +47,8 @@ public class ActPasswords extends AppCompatActivity {
                 checkExistPasswordKey();
             }
         });
+
+        getAllPasswords();
     }
 
     private void checkExistPasswordKey(){
@@ -88,5 +88,9 @@ public class ActPasswords extends AppCompatActivity {
             }
         });
         alertDialog.show();
+    }
+
+    private void getAllPasswords(){
+
     }
 }
