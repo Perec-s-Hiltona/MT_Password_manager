@@ -149,7 +149,7 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
 
         String keyName = edtKeyName.getText().toString();
 
-        if(keyName.length() == 0){
+        if(keyName.length() < 1){
 
             SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
             alertDialog.setTitleText((String) getResources().getText(R.string.msg_add_data));
@@ -184,13 +184,13 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
             }
 
             //encrypt rows and save in DB
-            if(login.length() < 0){
+            if(login.length() < 1){
                 login = (String) getResources().getText(R.string.empty_field);
             }
-            if(password.length() < 0){
+            if(password.length() < 1){
                 password = (String)getResources().getText(R.string.empty_field);
             }
-            if(url.length() < 0){
+            if(url.length() < 1){
                 url = (String)getResources().getText(R.string.empty_field);
             }
 
@@ -227,8 +227,18 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
                     alertDialog.show();
                     return;
                 }
+
+            }else {
+
+                bankName = getResources().getText(R.string.empty_field).toString();
+                cardNumber = getResources().getText(R.string.empty_field).toString();
+                cardHolder = getResources().getText(R.string.empty_field).toString();
+                cardExpiryMonth = getResources().getText(R.string.empty_field).toString();
+                cardExpiryYear = getResources().getText(R.string.empty_field).toString();
+                cardCVV = getResources().getText(R.string.empty_field).toString();
+                cardPIN = getResources().getText(R.string.empty_field).toString();
             }
-            if(comment.length() < 0){
+            if(comment.length() < 1){
                 comment = (String)getResources().getText(R.string.empty_field);
             }
 
@@ -264,6 +274,7 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
             keyORM.setCardCVV(encCardCVV);
             keyORM.setCardPIN(encCardPIN);
             keyORM.setComment(encComment);
+            keyORM.save();
 
             SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);
             alertDialog.setTitleText((String)getResources().getText(R.string.msg_saved));

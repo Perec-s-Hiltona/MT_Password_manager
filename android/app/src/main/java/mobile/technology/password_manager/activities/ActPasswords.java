@@ -2,6 +2,8 @@ package mobile.technology.password_manager.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,16 +13,24 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import mobile.technology.password_manager.ORM.AppSettings;
+import mobile.technology.password_manager.ORM.KeyORM;
 import mobile.technology.password_manager.R;
+import mobile.technology.password_manager.adaptersCardViews.AdapterCVPassword;
+import mobile.technology.password_manager.cardViews.CardViewPassword;
 
 public class ActPasswords extends AppCompatActivity {
 
     private FloatingActionButton fabAddPassword;
     private Toolbar toolbarPasswords;
+
+    private List <CardViewPassword> cardViewPasswordList;
+    private AdapterCVPassword adapterCVPassword;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +50,13 @@ public class ActPasswords extends AppCompatActivity {
         fabAddPassword = (FloatingActionButton)findViewById(R.id.fab_add_password);
         YoYo.with(Techniques.Landing).duration(2000).repeat(0).playOn(fabAddPassword);
 
+        //set param recyclerView
+        recyclerView = (RecyclerView)findViewById(R.id.recycler_view_passwords);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        getAllPasswords();
+
         fabAddPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +64,11 @@ public class ActPasswords extends AppCompatActivity {
                 checkExistPasswordKey();
             }
         });
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         getAllPasswords();
     }
 
@@ -91,6 +112,35 @@ public class ActPasswords extends AppCompatActivity {
     }
 
     private void getAllPasswords(){
+        try {
 
+            List <KeyORM> keyORMList = KeyORM.listAll(KeyORM.class);
+            cardViewPasswordList = new ArrayList<>();
+
+            for (KeyORM keyORM:keyORMList){
+                // TODO decrypt data from DB
+
+                //added decrypted data to List
+                cardViewPasswordList.add(new CardViewPassword(keyORM.getId().intValue(),
+                        getString(R.string.key_name)+" : "+keyORM.getKeyName(),
+                        getString(R.string.login) + " : " + keyORM.getLogin(),
+                        getString(R.string.password) + " : " + keyORM.getPassword(),
+                        getString(R.string.URL) + " : " + keyORM.getURL(),
+                        getString(R.string.bank_name) + " : " + keyORM.getBankName(),
+                        getString(R.string.card_number) + " : "+ keyORM.getCardNumber(),
+                        getString(R.string.card_holder) + " : " + keyORM.getCardHolder(),
+                        getString(R.string.card_expiry_month) + " : " + keyORM.getCardExpiryMonth(),
+                        getString(R.string.card_expiry_year) + " : " +keyORM.getCardExpiryYear(),
+                        getString(R.string.card_PIN) + " : " + keyORM.getCardPIN(),
+                        getString(R.string.card_CVV) + " : " + keyORM.getCardCVV(),
+                        getString(R.string.comment) + " : " + keyORM.getComment()));
+
+                adapterCVPassword = new AdapterCVPassword(cardViewPasswordList, this);
+                recyclerView.setAdapter(adapterCVPassword);
+            }
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 }
