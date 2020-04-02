@@ -15,6 +15,7 @@ import mobile.technology.password_manager.cardViews.CardViewPassword;
 
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -51,6 +52,8 @@ public class AdapterCVPassword extends RecyclerView.Adapter<AdapterCVPassword.Vi
         viewHolder.txtLogin.setText(CardViewPassword.getLogin());
         viewHolder.txtPassword.setText(CardViewPassword.getPassword());
         viewHolder.txtURL.setText(CardViewPassword.getURL());
+
+        //TODO add switch listner
 
         viewHolder.txtBankName.setText(CardViewPassword.getBankName());
         viewHolder.txtCardNumber.setText(CardViewPassword.getCardNumber());
@@ -96,6 +99,9 @@ public class AdapterCVPassword extends RecyclerView.Adapter<AdapterCVPassword.Vi
         public ImageView imgIconPassword;
         public ImageView imgOptions;
 
+        public Switch switchShowPersonalData;
+        public Switch switchBankData;
+
         public RelativeLayout rltPasswordCV;
 
         public ViewHolder(View itemView) {
@@ -118,6 +124,9 @@ public class AdapterCVPassword extends RecyclerView.Adapter<AdapterCVPassword.Vi
             imgIconPassword = (ImageView)itemView.findViewById(R.id.imView_icon_password);
             imgHidePIN = (ImageView) itemView.findViewById(R.id.imView_hide_PIN);
             imgHideCVV = (ImageView) itemView.findViewById(R.id.imView_hide_CVV);
+
+            switchShowPersonalData = (Switch)itemView.findViewById(R.id.switch_show_personal_data);
+            switchBankData = (Switch)itemView.findViewById(R.id.switch_show_bank_data);
 
             rltPasswordCV = (RelativeLayout)itemView.findViewById(R.id.rlt_password_cv);
         }

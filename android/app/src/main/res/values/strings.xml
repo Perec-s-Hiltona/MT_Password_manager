@@ -26,6 +26,8 @@
     <string name="key_name">Запись</string>
     <string name="key_number">номер записи</string>
     <string name="card_expiry_date">Срок действия карты</string>
+    <string name="show_personal_data">показать перс.данные</string>
+    <string name="show_bank_data">показать банк.данные</string>
 
     <!--Add password phrase-->
     <string name="password_key_desc">Ключевое слово</string>
