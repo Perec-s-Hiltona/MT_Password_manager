@@ -45,9 +45,13 @@ public class ActAddMainPassword extends AppCompatActivity {
         fabSavePasswordKey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 try {
-                    savePasswordKey();
+
+                    saveMainPassword();
+
                 } catch (Exception e) {
+
                     e.printStackTrace();
                 }
             }
@@ -55,24 +59,20 @@ public class ActAddMainPassword extends AppCompatActivity {
 
     }
 
-    private void savePasswordKey() throws Exception {
+    private void saveMainPassword() throws Exception {
 
-        String passwordKey = edtPasswordKey.getText().toString().trim();
+        String mainPassword = edtPasswordKey.getText().toString().trim();
 
-        if(passwordKey != null){
+        if(mainPassword != null){
 
-            if(checkPasswordKeyCondition(passwordKey)){
+            if(checkPasswordKeyCondition(mainPassword)){
 
                 MasterEncrypt masterEncrypt = new MasterEncrypt();
-                String encryptedMainPassword = masterEncrypt.encryptData(passwordKey, masterEncrypt.getZeroPassword());
-
-                System.out.println("encr data:"+ encryptedMainPassword);
+                String encryptedMainPassword = masterEncrypt.encryptData(mainPassword, masterEncrypt.getZeroPassword());
 
                 // encrypt password key and save in Database
-
                 AppSettings appSettings = new AppSettings();
-                appSettings.setTypePassword((String) getResources().getText(R.string.main_password_key));
-                appSettings.setValuePassword(encryptedMainPassword);
+                appSettings.setMainEncryptedPassword(encryptedMainPassword);
                 appSettings.save();
 
                 SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);

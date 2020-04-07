@@ -13,6 +13,7 @@ import java.util.List;
 import mobile.technology.password_manager.R;
 import mobile.technology.password_manager.cardViews.CardViewPassword;
 
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
@@ -41,36 +42,103 @@ public class AdapterCVPassword extends RecyclerView.Adapter<AdapterCVPassword.Vi
 
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
-        final CardViewPassword CardViewPassword = CardViewPasswordList.get(position);
 
-        //animation
-        YoYo.with(Techniques.ZoomInLeft).duration(1500).repeat(0).playOn(viewHolder.imgIconPassword);
+        try {
 
-        //set data to textView
-        viewHolder.txtKeyName.setText(CardViewPassword.getKeyName());
+            final CardViewPassword cardViewPassword = CardViewPasswordList.get(position);
 
-        viewHolder.txtLogin.setText(CardViewPassword.getLogin());
-        viewHolder.txtPassword.setText(CardViewPassword.getPassword());
-        viewHolder.txtURL.setText(CardViewPassword.getURL());
+            //animation
+            YoYo.with(Techniques.ZoomInLeft).duration(1500).repeat(0).playOn(viewHolder.imgIconPassword);
+            viewHolder.txtKeyName.setText(cardViewPassword.getKeyName());
 
-        //TODO add switch listner
+            hidePersonalData(viewHolder);
+            hideBankData(viewHolder);
 
-        viewHolder.txtBankName.setText(CardViewPassword.getBankName());
-        viewHolder.txtCardNumber.setText(CardViewPassword.getCardNumber());
-        viewHolder.txtCardHolder.setText(CardViewPassword.getCardHolder());
-        viewHolder.txtCardExpiryMonth.setText(CardViewPassword.getCardExpiryMonth());
-        viewHolder.txtCardExpiryYear.setText(CardViewPassword.getCardExpiryYear());
-        viewHolder.txtCardPIN.setText(CardViewPassword.getCardPIN());
-        viewHolder.txtCardCVV.setText(CardViewPassword.getCardCVV());
+            viewHolder.switchShowPersonalData.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
 
-        viewHolder.txtComment.setText(CardViewPassword.getComment());
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-        viewHolder.imgOptions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO show Popup menu
-            }
-        });
+                    if(viewHolder.switchShowPersonalData.isChecked()){
+
+                        viewHolder.txtLogin.setVisibility(View.VISIBLE);
+                        viewHolder.txtPassword.setVisibility(View.VISIBLE);
+                        viewHolder.txtURL.setVisibility(View.VISIBLE);
+
+                        viewHolder.txtLogin.setText(cardViewPassword.getLogin());
+                        viewHolder.txtPassword.setText(cardViewPassword.getPassword());
+                        viewHolder.txtURL.setText(cardViewPassword.getURL());
+
+                    }else {
+
+                        hidePersonalData(viewHolder);
+                    }
+                }
+            });
+
+            viewHolder.switchShowBankData.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                    if(viewHolder.switchShowBankData.isChecked()){
+
+                        viewHolder.txtBankName.setText(cardViewPassword.getBankName());
+                        viewHolder.txtCardNumber.setText(cardViewPassword.getCardNumber());
+                        viewHolder.txtCardHolder.setText(cardViewPassword.getCardHolder());
+                        viewHolder.txtCardExpiryMonth.setText(cardViewPassword.getCardExpiryMonth());
+                        viewHolder.txtCardExpiryYear.setText(cardViewPassword.getCardExpiryYear());
+                        viewHolder.txtCardPIN.setText(cardViewPassword.getCardPIN());
+                        viewHolder.txtCardCVV.setText(cardViewPassword.getCardCVV());
+
+                        viewHolder.txtBankName.setVisibility(View.VISIBLE);
+                        viewHolder.txtCardNumber.setVisibility(View.VISIBLE);
+                        viewHolder.txtCardHolder.setVisibility(View.VISIBLE);
+                        viewHolder.txtCardExpiryMonth.setVisibility(View.VISIBLE);
+                        viewHolder.txtCardExpiryYear.setVisibility(View.VISIBLE);
+
+                        viewHolder.imgHidePIN.setVisibility(View.VISIBLE);
+                        viewHolder.imgHideCVV.setVisibility(View.VISIBLE);
+
+                    }else {
+
+                        hideBankData(viewHolder);
+                    }
+                }
+            });
+
+            viewHolder.txtComment.setText(cardViewPassword.getComment());
+
+            viewHolder.imgOptions.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //TODO show Popup menu
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void hideBankData(final ViewHolder viewHolder){
+
+        viewHolder.txtBankName.setVisibility(View.GONE);
+        viewHolder.txtCardNumber.setVisibility(View.GONE);
+        viewHolder.txtCardHolder.setVisibility(View.GONE);
+        viewHolder.txtCardExpiryMonth.setVisibility(View.GONE);
+        viewHolder.txtCardExpiryYear.setVisibility(View.GONE);
+        viewHolder.txtCardPIN.setVisibility(View.GONE);
+        viewHolder.txtCardCVV.setVisibility(View.GONE);
+
+        viewHolder.imgHidePIN.setVisibility(View.GONE);
+        viewHolder.imgHideCVV.setVisibility(View.GONE);
+    }
+
+    private void hidePersonalData(final ViewHolder viewHolder){
+
+        viewHolder.txtLogin.setVisibility(View.GONE);
+        viewHolder.txtPassword.setVisibility(View.GONE);
+        viewHolder.txtURL.setVisibility(View.GONE);
     }
 
     @Override
@@ -100,7 +168,7 @@ public class AdapterCVPassword extends RecyclerView.Adapter<AdapterCVPassword.Vi
         public ImageView imgOptions;
 
         public Switch switchShowPersonalData;
-        public Switch switchBankData;
+        public Switch switchShowBankData;
 
         public RelativeLayout rltPasswordCV;
 
@@ -126,7 +194,7 @@ public class AdapterCVPassword extends RecyclerView.Adapter<AdapterCVPassword.Vi
             imgHideCVV = (ImageView) itemView.findViewById(R.id.imView_hide_CVV);
 
             switchShowPersonalData = (Switch)itemView.findViewById(R.id.switch_show_personal_data);
-            switchBankData = (Switch)itemView.findViewById(R.id.switch_show_bank_data);
+            switchShowBankData = (Switch)itemView.findViewById(R.id.switch_show_bank_data);
 
             rltPasswordCV = (RelativeLayout)itemView.findViewById(R.id.rlt_password_cv);
         }
@@ -137,6 +205,5 @@ public class AdapterCVPassword extends RecyclerView.Adapter<AdapterCVPassword.Vi
         return resources.getString(resources.getIdentifier(stringID,
                 "string", context.getPackageName()));
     }
-
 
 }

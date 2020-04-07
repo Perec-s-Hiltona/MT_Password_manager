@@ -12,7 +12,7 @@
     <string name="password">Пароль</string>
     <string name="password_name">Название записи</string>
     <string name="comment">Комментарий</string>
-    <string name="URL">URL (ссылка)</string>
+    <string name="rowURL">URL (ссылка)</string>
     <string name="add_card_data">Создать запись о карте</string>
     <string name="bank_name">Название Банка</string>
     <string name="card_number">Номер карты</string>
@@ -31,7 +31,7 @@
 
     <!--Add password phrase-->
     <string name="password_key_desc">Ключевое слово</string>
-    <string name="main_password_key">MainPasswordKey</string>
+    <string name="type_main_password_key">MainPassword</string>
 
     <!--General-->
     <string name="msg_add">Добавить</string>

@@ -5,32 +5,23 @@ import com.orm.SugarRecord;
 
 public class AppSettings extends SugarRecord {
 
-    private String typePassword;
-    private String valuePassword;
+    private String mainEncryptedPassword;
 
     public AppSettings(){
 
     }
 
-    public AppSettings(String typePassword, String valuePassword) {
-        this.typePassword = typePassword;
-        this.valuePassword = valuePassword;
+    public AppSettings(String mainEncryptedPassword) {
+
+        this.mainEncryptedPassword = mainEncryptedPassword;
     }
 
-    public String getTypePassword() {
-        return typePassword;
+    public String getMainEncryptedPassword() {
+
+        return mainEncryptedPassword;
     }
 
-    public void setTypePassword(String typePassword) {
-        this.typePassword = typePassword;
-    }
-
-    public String getValuePassword() {
-
-        return valuePassword;
-    }
-
-    public void setValuePassword(String valuePassword) {
-        this.valuePassword = valuePassword;
+    public void setMainEncryptedPassword(String mainEncryptedPassword) {
+        this.mainEncryptedPassword = mainEncryptedPassword;
     }
 }

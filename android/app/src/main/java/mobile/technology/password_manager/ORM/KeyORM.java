@@ -7,7 +7,7 @@ public class KeyORM extends SugarRecord {
     private String keyName;
     private String login;
     private String password;
-    private String URL;
+    private String rowURL;
     private String bankName;
     private String cardNumber;
     private String cardHolder;
@@ -23,7 +23,7 @@ public class KeyORM extends SugarRecord {
 
     public KeyORM(String keyName,
                   String login, String password,
-                  String URL,
+                  String rowURL,
                   String bankName, String cardNumber,
                   String cardHolder,
                   String cardExpiryMonth, String cardExpiryYear,
@@ -33,7 +33,7 @@ public class KeyORM extends SugarRecord {
         this.keyName = keyName;
         this.login = login;
         this.password = password;
-        this.URL = URL;
+        this.rowURL = rowURL;
         this.bankName = bankName;
         this.cardNumber = cardNumber;
         this.cardHolder = cardHolder;
@@ -68,12 +68,12 @@ public class KeyORM extends SugarRecord {
         this.password = password;
     }
 
-    public String getURL() {
-        return URL;
+    public String getRowURL() {
+        return rowURL;
     }
 
-    public void setURL(String URL) {
-        this.URL = URL;
+    public void setRowURL(String rowURL) {
+        this.rowURL = rowURL;
     }
 
     public String getBankName() {

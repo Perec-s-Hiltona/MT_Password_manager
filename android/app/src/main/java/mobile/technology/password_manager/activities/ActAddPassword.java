@@ -48,11 +48,9 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
 
     MasterEncrypt masterEncrypt;
 
-    String login, password, url,
+    String login, password, URL,
             bankName, cardNumber, cardHolder, cardExpiryMonth, cardExpiryYear, cardCVV, cardPIN,
             comment;
-
-    String encryptedMainPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,31 +155,24 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
             alertDialog.setConfirmText((String) getResources().getText(R.string.msg_ok));
             alertDialog.show();
 
-        }else {
+        } else {
 
-            login = edtLogin.getText().toString();
-            password = edtPassword.getText().toString();
-            url = edtURL.getText().toString();
+            login = edtLogin.getText().toString().trim();
+            password = edtPassword.getText().toString().trim();
+            URL = edtURL.getText().toString().trim();
 
             if (switchAddBankData.isChecked()){
 
-                bankName = edtBankName.getText().toString();
-                cardNumber = edtCardNumber.getText().toString();
-                cardHolder = edtCardHolder.getText().toString();
-                cardExpiryMonth = edtCardExpiryMonth.getText().toString();
-                cardExpiryYear = edtCardExpiryYear.getText().toString();
-                cardCVV = edtCardCVV.getText().toString();
-                cardPIN = edtCardPIN.getText().toString();
+                bankName = edtBankName.getText().toString().trim();
+                cardNumber = edtCardNumber.getText().toString().trim();
+                cardHolder = edtCardHolder.getText().toString().trim();
+                cardExpiryMonth = edtCardExpiryMonth.getText().toString().trim();
+                cardExpiryYear = edtCardExpiryYear.getText().toString().trim();
+                cardCVV = edtCardCVV.getText().toString().trim();
+                cardPIN = edtCardPIN.getText().toString().trim();
             }
 
-            comment = edtComment.getText().toString();
-
-            // get main password from DB
-            List<AppSettings> appSettingsList = AppSettings.listAll(AppSettings.class);
-
-            for (AppSettings appSettings : appSettingsList){
-                encryptedMainPassword = appSettings.getValuePassword();
-            }
+            comment = edtComment.getText().toString().trim();
 
             //encrypt rows and save in DB
             if(login.length() < 1){
@@ -190,8 +181,8 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
             if(password.length() < 1){
                 password = (String)getResources().getText(R.string.empty_field);
             }
-            if(url.length() < 1){
-                url = (String)getResources().getText(R.string.empty_field);
+            if(URL.length() < 1){
+                URL = (String)getResources().getText(R.string.empty_field);
             }
 
             if(switchAddBankData.isChecked()){
@@ -242,13 +233,22 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
                 comment = (String)getResources().getText(R.string.empty_field);
             }
 
-            String decryptedMainPassword = masterEncrypt.decryptData(encryptedMainPassword,masterEncrypt.getZeroPassword());
+            // get main password from DB
+            String encryptedMainPassword = " ";
+
+            List<AppSettings> appSettingsList = AppSettings.listAll(AppSettings.class);
+
+            for (AppSettings appSettings : appSettingsList){
+                encryptedMainPassword = appSettings.getMainEncryptedPassword();
+            }
+            // decrypt main password
+            String decryptedMainPassword = masterEncrypt.decryptData(encryptedMainPassword, masterEncrypt.getZeroPassword());
 
             // encrypt fields
             String encKeyName = masterEncrypt.encryptData(keyName, decryptedMainPassword);
             String encLogin = masterEncrypt.encryptData(login,decryptedMainPassword);
             String encPassword = masterEncrypt.encryptData(password, decryptedMainPassword);
-            String encURL = masterEncrypt.encryptData(url, decryptedMainPassword);
+            String encURL = masterEncrypt.encryptData(URL, decryptedMainPassword);
 
             String encBankName = masterEncrypt.encryptData(bankName,decryptedMainPassword);
             String encCardNumber = masterEncrypt.encryptData(cardNumber,decryptedMainPassword);
@@ -265,7 +265,7 @@ public class ActAddPassword extends AppCompatActivity implements  CompoundButton
             keyORM.setKeyName(encKeyName);
             keyORM.setLogin(encLogin);
             keyORM.setPassword(encPassword);
-            keyORM.setURL(encURL);
+            keyORM.setRowURL(encURL);
             keyORM.setBankName(encBankName);
             keyORM.setCardNumber(encCardNumber);
             keyORM.setCardHolder(encCardHolder);
