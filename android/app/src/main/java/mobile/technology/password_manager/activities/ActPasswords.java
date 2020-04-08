@@ -129,7 +129,7 @@ public class ActPasswords extends AppCompatActivity {
 
                 for (KeyORM keyORM:keyORMList){
 
-                    // TODO decrypt data from DB
+                    // decrypt data from DB
                     decryptedKeyName = masterEncrypt.decryptData(keyORM.getKeyName(),decryptedMainPassword);
                     decryptedLogin = masterEncrypt.decryptData(keyORM.getLogin(),decryptedMainPassword);
                     decryptedPassword = masterEncrypt.decryptData(keyORM.getPassword(),decryptedMainPassword);
@@ -144,18 +144,20 @@ public class ActPasswords extends AppCompatActivity {
                     decryptedComment = masterEncrypt.decryptData(keyORM.getComment(),decryptedMainPassword);
 
                     //added decrypted data to List
+
                     cardViewPasswordList.add(new CardViewPassword(keyORM.getId().intValue(),
                             decryptedKeyName,
-                            getString(R.string.login) + " : " + decryptedLogin,
-                            getString(R.string.password) + " : " + decryptedPassword,
-                            getString(R.string.rowURL) + " : " + decryptedURL,
-                            getString(R.string.bank_name) + " : " + decryptedBankName,
-                            getString(R.string.card_number) + " : "+ decryptedCardNumber,
-                            getString(R.string.card_holder) + " : " + decryptedCardHolder,
-                            getString(R.string.card_expiry_month) + " : " + decryptedCardExpiryMonth,
-                            getString(R.string.card_expiry_year) + " : " + decryptedCardExpiryYear,
-                            getString(R.string.card_PIN) + " : " + decryptedCardCVV,
-                            getString(R.string.card_CVV) + " : " + decryptedCardPIN,
+                            decryptedLogin,
+                            decryptedPassword,
+                            decryptedURL,
+
+                            decryptedBankName,
+                            decryptedCardNumber,
+                            decryptedCardHolder,
+                            decryptedCardExpiryMonth,
+                            decryptedCardExpiryYear,
+                            decryptedCardCVV,
+                            decryptedCardPIN,
                             getString(R.string.comment) + " : " + decryptedComment));
 
                     adapterCVPassword = new AdapterCVPassword(cardViewPasswordList, this);

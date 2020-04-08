@@ -1,5 +1,6 @@
 package mobile.technology.password_manager.adaptersCardViews;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
@@ -61,13 +62,31 @@ public class AdapterCVPassword extends RecyclerView.Adapter<AdapterCVPassword.Vi
 
                     if(viewHolder.switchShowPersonalData.isChecked()){
 
-                        viewHolder.txtLogin.setVisibility(View.VISIBLE);
-                        viewHolder.txtPassword.setVisibility(View.VISIBLE);
-                        viewHolder.txtURL.setVisibility(View.VISIBLE);
+                        String empty_data = getStringByID(context,R.string.empty_field);
 
                         viewHolder.txtLogin.setText(cardViewPassword.getLogin());
                         viewHolder.txtPassword.setText(cardViewPassword.getPassword());
                         viewHolder.txtURL.setText(cardViewPassword.getURL());
+
+                        if(!viewHolder.txtLogin.getText().toString().equals(empty_data)){
+                            viewHolder.txtLogin.setVisibility(View.VISIBLE);
+                        }
+                        if(!viewHolder.txtPassword.getText().toString().equals(empty_data)){
+                            viewHolder.txtPassword.setVisibility(View.VISIBLE);
+                        }
+                        if(!viewHolder.txtURL.getText().toString().equals(empty_data)){
+                            viewHolder.txtURL.setVisibility(View.VISIBLE);
+                        }
+
+                        if(viewHolder.txtLogin.getText().toString().equals(empty_data) &&
+                            viewHolder.txtPassword.getText().toString().equals(empty_data) &&
+                            viewHolder.txtURL.getText().toString().equals(empty_data)){
+
+                            String empty_field = getStringByID(context,R.string.empty_field);
+
+                            viewHolder.txtLogin.setText(empty_field);
+                            viewHolder.txtLogin.setVisibility(View.VISIBLE);
+                        }
 
                     }else {
 
@@ -90,14 +109,40 @@ public class AdapterCVPassword extends RecyclerView.Adapter<AdapterCVPassword.Vi
                         viewHolder.txtCardPIN.setText(cardViewPassword.getCardPIN());
                         viewHolder.txtCardCVV.setText(cardViewPassword.getCardCVV());
 
-                        viewHolder.txtBankName.setVisibility(View.VISIBLE);
-                        viewHolder.txtCardNumber.setVisibility(View.VISIBLE);
-                        viewHolder.txtCardHolder.setVisibility(View.VISIBLE);
-                        viewHolder.txtCardExpiryMonth.setVisibility(View.VISIBLE);
-                        viewHolder.txtCardExpiryYear.setVisibility(View.VISIBLE);
+                        String empty_field = getStringByID(context,R.string.empty_field);
 
-                        viewHolder.imgHidePIN.setVisibility(View.VISIBLE);
-                        viewHolder.imgHideCVV.setVisibility(View.VISIBLE);
+                        if(!viewHolder.txtBankName.getText().toString().equals(empty_field)){
+                            viewHolder.txtBankName.setVisibility(View.VISIBLE);
+                        }
+                        if(!viewHolder.txtCardNumber.getText().toString().equals(empty_field)){
+                            viewHolder.txtCardNumber.setVisibility(View.VISIBLE);
+                        }
+                        if(!viewHolder.txtCardHolder.getText().toString().equals(empty_field)){
+                            viewHolder.txtCardHolder.setVisibility(View.VISIBLE);
+                        }
+                        if(!viewHolder.txtCardExpiryMonth.getText().toString().equals(empty_field)){
+                            viewHolder.txtCardExpiryMonth.setVisibility(View.VISIBLE);
+                        }
+                        if(!viewHolder.txtCardExpiryYear.getText().toString().equals(empty_field)){
+                            viewHolder.txtCardExpiryYear.setVisibility(View.VISIBLE);
+                        }
+                        if(!viewHolder.txtCardCVV.getText().toString().equals(empty_field)){
+                            viewHolder.txtCardCVV.setVisibility(View.VISIBLE);
+                        }
+                        if(!viewHolder.txtCardPIN.getText().toString().equals(empty_field)){
+                            viewHolder.txtCardPIN.setVisibility(View.VISIBLE);
+                        }
+                        if(viewHolder.txtBankName.getText().toString().equals(empty_field) &&
+                                viewHolder.txtCardNumber.getText().toString().equals(empty_field) &&
+                                viewHolder.txtCardHolder.getText().toString().equals(empty_field) &&
+                                viewHolder.txtCardExpiryMonth.getText().toString().equals(empty_field)&&
+                                viewHolder.txtCardExpiryYear.getText().toString().equals(empty_field)&&
+                                viewHolder.txtCardCVV.getText().toString().equals(empty_field)&&
+                                viewHolder.txtCardPIN.getText().toString().equals(empty_field)){
+
+                            viewHolder.txtBankName.setText(getStringByID(context, R.string.bank_data_empty));
+                            viewHolder.txtBankName.setVisibility(View.VISIBLE);
+                        }
 
                     }else {
 
@@ -130,8 +175,6 @@ public class AdapterCVPassword extends RecyclerView.Adapter<AdapterCVPassword.Vi
         viewHolder.txtCardPIN.setVisibility(View.GONE);
         viewHolder.txtCardCVV.setVisibility(View.GONE);
 
-        viewHolder.imgHidePIN.setVisibility(View.GONE);
-        viewHolder.imgHideCVV.setVisibility(View.GONE);
     }
 
     private void hidePersonalData(final ViewHolder viewHolder){
@@ -162,8 +205,8 @@ public class AdapterCVPassword extends RecyclerView.Adapter<AdapterCVPassword.Vi
         public TextView txtCardCVV;
         public TextView txtComment;
 
-        public ImageView imgHidePIN;
-        public ImageView imgHideCVV;
+        //public ImageView imgHidePIN;
+        //public ImageView imgHideCVV;
         public ImageView imgIconPassword;
         public ImageView imgOptions;
 
@@ -190,8 +233,8 @@ public class AdapterCVPassword extends RecyclerView.Adapter<AdapterCVPassword.Vi
 
             imgOptions = (ImageView)itemView.findViewById(R.id.imView_options);
             imgIconPassword = (ImageView)itemView.findViewById(R.id.imView_icon_password);
-            imgHidePIN = (ImageView) itemView.findViewById(R.id.imView_hide_PIN);
-            imgHideCVV = (ImageView) itemView.findViewById(R.id.imView_hide_CVV);
+            //imgHidePIN = (ImageView) itemView.findViewById(R.id.imView_hide_PIN);
+            //imgHideCVV = (ImageView) itemView.findViewById(R.id.imView_hide_CVV);
 
             switchShowPersonalData = (Switch)itemView.findViewById(R.id.switch_show_personal_data);
             switchShowBankData = (Switch)itemView.findViewById(R.id.switch_show_bank_data);
@@ -200,9 +243,9 @@ public class AdapterCVPassword extends RecyclerView.Adapter<AdapterCVPassword.Vi
         }
     }
 
-    public static String getStringByID(Context context,String stringID){
+    public static String getStringByID(Context context, Integer stringID){
         Resources resources = context.getResources();
-        return resources.getString(resources.getIdentifier(stringID,
+        return resources.getString(resources.getIdentifier(stringID.toString(),
                 "string", context.getPackageName()));
     }
 
