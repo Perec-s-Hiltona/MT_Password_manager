@@ -37,28 +37,28 @@
             </intent-filter>
         </activity> <!-- Passwords -->
         <activity
-            android:name=".activities.ActPasswords"
+            android:name=".activities.ActNotes"
             android:parentActivityName=".activities.ActHome"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name=".act_passwords" />
+                <action android:name=".act_notes" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity> <!-- Add CardViewPassword -->
         <activity
-            android:name=".activities.ActAddPassword"
-            android:parentActivityName=".activities.ActPasswords"
+            android:name=".activities.ActAddNote"
+            android:parentActivityName=".activities.ActNotes"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name=".act_add_password" />
+                <action android:name=".act_add_note" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <!-- Add password phrase -->
         <activity android:name=".activities.ActAddMainPassword"
-            android:parentActivityName=".activities.ActPasswords"
+            android:parentActivityName=".activities.ActNotes"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name=".act_add_main_password"/>

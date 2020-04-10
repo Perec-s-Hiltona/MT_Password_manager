@@ -1,7 +1,5 @@
 package mobile.technology.password_manager.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -44,7 +42,7 @@ public class ActHome extends Activity implements View.OnClickListener  {
     public void onClick(View v){
         switch (v.getId()){
             case R.id.linl_passwords:
-                Intent act_passwords = new Intent(".act_passwords");
+                Intent act_passwords = new Intent(".act_notes");
                 startActivity(act_passwords);
                 break;
             case R.id.linl_settings:

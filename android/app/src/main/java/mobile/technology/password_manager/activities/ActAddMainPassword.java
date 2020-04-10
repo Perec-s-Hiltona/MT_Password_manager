@@ -32,7 +32,7 @@ public class ActAddMainPassword extends AppCompatActivity {
         setContentView(R.layout.act_add_main_password);
 
         toolbar = findViewById(R.id.toolbar_add_password_key);
-        toolbar.setTitle(getResources().getText(R.string.msg_add_password_key));
+        toolbar.setTitle(getResources().getText(R.string.add_main_password));
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -76,8 +76,8 @@ public class ActAddMainPassword extends AppCompatActivity {
                 appSettings.save();
 
                 SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);
-                alertDialog.setTitleText((String)getResources().getText(R.string.msg_saved));
-                alertDialog.setContentText((String)getResources().getText(R.string.msg_good_keyword));
+                alertDialog.setTitleText((String)getResources().getText(R.string.saved));
+                alertDialog.setContentText((String)getResources().getText(R.string.main_password_verified));
                 alertDialog.show();
             }
         }
@@ -137,9 +137,9 @@ public class ActAddMainPassword extends AppCompatActivity {
     private void showMessageWarning(){
 
         SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
-        alertDialog.setTitleText((String) getResources().getText(R.string.msg_change_keyword));
-        alertDialog.setContentText((String)getResources().getText(R.string.msg_change_keyword_desc));
-        alertDialog.setConfirmText((String) getResources().getText(R.string.msg_ok));
+        alertDialog.setTitleText((String) getResources().getText(R.string.change_main_password));
+        alertDialog.setContentText((String)getResources().getText(R.string.main_password_change_desc));
+        alertDialog.setConfirmText((String) getResources().getText(R.string.ok));
         alertDialog.show();
     }
 }

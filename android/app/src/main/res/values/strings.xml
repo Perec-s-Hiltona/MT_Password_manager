@@ -2,8 +2,8 @@
     <string name="app_name">Менеджер паролей</string>
 
     <!--Home-->
-    <string name="passwords">Мои пароли</string>
-    <string name="passwords_desc">список ваших паролей</string>
+    <string name="my_notes">Мои пароли</string>
+    <string name="my_notes_desc">список ваших паролей</string>
     <string name="settings">Настройки</string>
     <string name="settings_desc">синхронизация, доступ и т.д.</string>
 
@@ -12,7 +12,7 @@
     <string name="password">Пароль</string>
     <string name="password_name">Название записи</string>
     <string name="comment">Комментарий</string>
-    <string name="rowURL">URL</string>
+    <string name="URL">URL</string>
     <string name="add_card_data">Создать запись о карте</string>
     <string name="bank_name">Банк</string>
     <string name="card_number">Карта</string>
@@ -23,8 +23,8 @@
     <string name="card_PIN">PIN</string>
 
     <!--Passwords-->
-    <string name="key_name">Запись</string>
-    <string name="key_number">номер записи</string>
+    <string name="note_name">Запись</string>
+    <string name="note_number">номер записи</string>
     <string name="card_expiry_date">Срок действия карты</string>
     <string name="show_personal_data">показать перс.данные</string>
     <string name="show_bank_data">показать банк.данные</string>
@@ -34,20 +34,23 @@
     <string name="type_main_password_key">MainPassword</string>
 
     <!--General-->
-    <string name="msg_add">Добавить</string>
-    <string name="msg_saved">Сохранено</string>
-    <string name="empty_field">Нет данных</string>
-    <string name="msg_check_correct_data">Проверьте корректность данных</string>
-    <string name="card_expiry_month_incorrect">некорректно</string>
+    <string name="add">Добавить</string>
+    <string name="saved">Сохранено</string>
+    <string name="no_data">Нет данных</string>
+    <string name="check_correct_data">Проверьте корректность данных</string>
+    <string name="incorrect">некорректно</string>
     <string name="bank_data">Запись банковской информации</string>
     <string name="bank_data_empty">Нет банковских данных</string>
+    <string name="change">Изменить</string>
+    <string name="delete">Удалить</string>
 
     <!--Message-->
-    <string name="msg_add_data">Заполните поле</string>
-    <string name="msg_ok">OK</string>
-    <string name="msg_add_password_key">Добавьте Ключевое слово</string>
-    <string name="msg_add_password_key_desc">Ключевое слово необходимо для доступа к паролям</string>
-    <string name="msg_change_keyword">Измените Ключевое слово</string>
-    <string name="msg_change_keyword_desc">Ключевое слово должно быть:\n1) не менее 8 символов\n2) иметь буквы и цифры\n3) иметь символы,например, ! % № </string>
-    <string name="msg_good_keyword">Ключевое слово надежное</string>
+    <string name="add_data">Заполните поле</string>
+    <string name="ok">OK</string>
+    <string name="add_main_password">Добавьте Ключевое слово</string>
+    <string name="main_password_desc">Ключевое слово необходимо для доступа к паролям</string>
+    <string name="change_main_password">Измените Ключевое слово</string>
+    <string name="main_password_change_desc">Ключевое слово должно быть:\n1) не менее 8 символов\n2) иметь буквы и цифры\n3) иметь символы,например, ! % № </string>
+    <string name="main_password_verified">Ключевое слово надежное</string>
+    <string name="deleted">Удалено</string>
 </resources>

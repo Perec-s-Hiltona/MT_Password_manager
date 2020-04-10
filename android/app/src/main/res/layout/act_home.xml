@@ -54,7 +54,7 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:layout_marginTop="10dp"
-                        android:text="@string/passwords" />
+                        android:text="@string/my_notes" />
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:textStyle="italic"
                         android:gravity="center"
-                        android:text="@string/passwords_desc"/>
+                        android:text="@string/my_notes_desc"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
