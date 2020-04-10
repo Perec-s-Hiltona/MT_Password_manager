@@ -45,7 +45,7 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity> <!-- Add CardViewPassword -->
+        </activity> <!-- Add CardViewNote -->
         <activity
             android:name=".activities.ActAddNote"
             android:parentActivityName=".activities.ActNotes"
