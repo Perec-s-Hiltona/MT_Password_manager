@@ -37,10 +37,10 @@
     <string name="add">Добавить</string>
     <string name="saved">Сохранено</string>
     <string name="no_data">Нет данных</string>
+    <string name="no_digit_data">0000</string>
     <string name="check_correct_data">Проверьте корректность данных</string>
     <string name="incorrect">некорректно</string>
     <string name="bank_data">Запись банковской информации</string>
-    <string name="bank_data_empty">Нет банковских данных</string>
     <string name="change">Изменить</string>
     <string name="delete">Удалить</string>
 
