@@ -199,8 +199,8 @@ public class AdapterCVNote extends RecyclerView.Adapter<AdapterCVNote.ViewHolder
                                         notifyDataSetChanged();
 
                                         SweetAlertDialog alertDialog = new SweetAlertDialog(context, SweetAlertDialog.SUCCESS_TYPE);
-                                        alertDialog.setTitle(R.string.deleted);
-                                        alertDialog.setConfirmText(getStringByID(context, R.string.ok));
+                                        alertDialog.setTitle(R.string.msg_deleted);
+                                        alertDialog.setConfirmText(getStringByID(context, R.string.msg_ok));
                                         alertDialog.show();
                                     }
 

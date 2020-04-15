@@ -27,7 +27,7 @@ import mobile.technology.password_manager.general.MasterEncrypt;
 public class ActNotes extends AppCompatActivity {
 
     private FloatingActionButton fabAddPassword;
-    private Toolbar toolbarPasswords;
+    private Toolbar toolbarNotes;
 
     private List <CardViewNote> cardViewNoteList;
     private AdapterCVNote adapterCVNote;
@@ -39,9 +39,9 @@ public class ActNotes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_notes);
 
-        toolbarPasswords = findViewById(R.id.toolbar_passwords);
-        toolbarPasswords.setTitle(getResources().getText(R.string.my_notes_desc));
-        setSupportActionBar(toolbarPasswords);
+        toolbarNotes = findViewById(R.id.toolbar_notes);
+        toolbarNotes.setTitle(getResources().getText(R.string.my_notes));
+        setSupportActionBar(toolbarNotes);
 
         // set back button on toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -84,9 +84,9 @@ public class ActNotes extends AppCompatActivity {
             if(appSettingsList.size() <= 0){
 
                 final SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
-                alertDialog.setTitleText((String) getResources().getText(R.string.add_main_password));
-                alertDialog.setContentText((String)getResources().getText(R.string.main_password_desc));
-                alertDialog.setConfirmText((String) getResources().getText(R.string.ok));
+                alertDialog.setTitleText((String) getResources().getText(R.string.msg_add_main_password));
+                alertDialog.setContentText((String)getResources().getText(R.string.msg_main_password_desc));
+                alertDialog.setConfirmText((String) getResources().getText(R.string.msg_ok));
 
                 alertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override

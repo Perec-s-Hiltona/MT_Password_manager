@@ -30,7 +30,7 @@
     <string name="show_bank_data">показать банк.данные</string>
 
     <!--Add password phrase-->
-    <string name="password_key_desc">Ключевое слово</string>
+    <string name="password_key_desc">Главный пароль</string>
     <string name="type_main_password_key">MainPassword</string>
 
     <!--General-->
@@ -45,12 +45,23 @@
     <string name="delete">Удалить</string>
 
     <!--Message-->
-    <string name="add_data">Заполните поле</string>
-    <string name="ok">OK</string>
-    <string name="add_main_password">Добавьте Ключевое слово</string>
-    <string name="main_password_desc">Ключевое слово необходимо для доступа к паролям</string>
-    <string name="change_main_password">Измените Ключевое слово</string>
-    <string name="main_password_change_desc">Ключевое слово должно быть:\n1) не менее 8 символов\n2) иметь буквы и цифры\n3) иметь символы,например, ! % № </string>
-    <string name="main_password_verified">Ключевое слово надежное</string>
-    <string name="deleted">Удалено</string>
+    <string name="msg_add_data">Заполните поле</string>
+    <string name="msg_ok">OK</string>
+    <string name="msg_add_main_password">Добавьте главный пароль</string>
+    <string name="msg_main_password_desc">Главный пароль необходим для доступа к записям</string>
+    <string name="msg_change_main_password">Измените главный пароль</string>
+    <string name="msg_main_password_change_desc">Главный пароль должно быть:\n1) не менее 8 символов\n2) иметь буквы и цифры\n3) иметь символы,например, ! % № </string>
+    <string name="msg_main_password_verified">Главный пароль надежный</string>
+    <string name="msg_deleted">Удалено</string>
+
+    <!--Settings-->
+    <string name="update_main_password">Изменить главный пароль</string>
+    <string name="use_fingerprint">Использовать отпечаток</string>
+    <string name="use_fingerprint_desc">отпечаток пальца для входа в приложение</string>
+    <string name="use_synchronization">Включить синхронизацию</string>
+    <string name="use_synchronization_desc">Резервное копирование и хранение данных в облаке</string>
+    <string name="app_info">О приложении</string>
+    <string name="app_version">Версия</string>
+
+
 </resources>

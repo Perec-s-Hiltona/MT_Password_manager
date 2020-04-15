@@ -206,9 +206,9 @@ public class ActAddNote extends AppCompatActivity implements  CompoundButton.OnC
         if(keyName.length() < 1){
 
             SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
-            alertDialog.setTitleText((String) getResources().getText(R.string.add_data));
+            alertDialog.setTitleText((String) getResources().getText(R.string.msg_add_data));
             alertDialog.setContentText((String)getResources().getText(R.string.password_name));
-            alertDialog.setConfirmText((String) getResources().getText(R.string.ok));
+            alertDialog.setConfirmText((String) getResources().getText(R.string.msg_ok));
             alertDialog.show();
 
         } else {
@@ -252,7 +252,7 @@ public class ActAddNote extends AppCompatActivity implements  CompoundButton.OnC
                     SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
                     alertDialog.setTitleText((String) getResources().getText(R.string.check_correct_data));
                     alertDialog.setContentText((String)getResources().getText(R.string.bank_data));
-                    alertDialog.setConfirmText((String)getResources().getText(R.string.ok));
+                    alertDialog.setConfirmText((String)getResources().getText(R.string.msg_ok));
                     alertDialog.show();
                     return;
 
@@ -261,7 +261,7 @@ public class ActAddNote extends AppCompatActivity implements  CompoundButton.OnC
                     SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
                     alertDialog.setTitleText((String) getResources().getText(R.string.check_correct_data));
                     alertDialog.setContentText((String)getResources().getText(R.string.card_expiry_month));
-                    alertDialog.setConfirmText((String)getResources().getText(R.string.ok));
+                    alertDialog.setConfirmText((String)getResources().getText(R.string.msg_ok));
                     alertDialog.show();
                     return;
 
@@ -270,7 +270,7 @@ public class ActAddNote extends AppCompatActivity implements  CompoundButton.OnC
                     SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
                     alertDialog.setTitleText((String) getResources().getText(R.string.check_correct_data));
                     alertDialog.setContentText((String)getResources().getText(R.string.card_expiry_year));
-                    alertDialog.setConfirmText((String)getResources().getText(R.string.ok));
+                    alertDialog.setConfirmText((String)getResources().getText(R.string.msg_ok));
                     alertDialog.show();
                     return;
                 }

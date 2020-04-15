@@ -25,7 +25,7 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.Toolbar
-            android:id ="@+id/toolbar_passwords"
+            android:id ="@+id/toolbar_notes"
             style="@style/Toolbar"/>
 
         <androidx.recyclerview.widget.RecyclerView

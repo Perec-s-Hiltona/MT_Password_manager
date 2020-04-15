@@ -46,7 +46,8 @@ public class ActHome extends Activity implements View.OnClickListener  {
                 startActivity(act_passwords);
                 break;
             case R.id.linl_settings:
-                //go to page settings
+                Intent act_settings = new Intent(".act_settings");
+                startActivity(act_settings);
                 break;
         }
     }

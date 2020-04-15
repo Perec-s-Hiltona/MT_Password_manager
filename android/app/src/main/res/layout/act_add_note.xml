@@ -199,7 +199,7 @@
                     android:layout_margin="10dp"
                     android:background="@color/blueLight" />
 
-                <!--Use card data-->
+                <!--Add card data-->
                 <androidx.cardview.widget.CardView
                     android:layout_width="320dp"
                     android:layout_height="50dp"
@@ -299,7 +299,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/card_holder"
-                                android:inputType="number"
+                                android:inputType="text"
                                 android:maxLength="100"
                                 android:paddingStart="8dp"
                                 tools:ignore="RtlSymmetry" />
@@ -319,7 +319,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/card_number"
-                                android:inputType="text"
+                                android:inputType="number"
                                 android:maxLength="100"
                                 android:paddingStart="8dp"
                                 tools:ignore="RtlSymmetry" />
