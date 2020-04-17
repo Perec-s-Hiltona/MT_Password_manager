@@ -12,6 +12,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import java.util.ArrayList;
 import java.util.List;
 
+import mobile.technology.password_manager.ORM.AppSettings;
 import mobile.technology.password_manager.R;
 
 public class ActHome extends Activity implements View.OnClickListener  {
@@ -36,6 +37,8 @@ public class ActHome extends Activity implements View.OnClickListener  {
         // setOnClickListener
         passwords.setOnClickListener((View.OnClickListener) this);
         settings.setOnClickListener((View.OnClickListener) this);
+
+        getMainPassword();
     }
 
     @Override
@@ -49,6 +52,17 @@ public class ActHome extends Activity implements View.OnClickListener  {
                 Intent act_settings = new Intent(".act_settings");
                 startActivity(act_settings);
                 break;
+        }
+    }
+
+    private void getMainPassword() {
+
+        List<AppSettings> appSettingsList = AppSettings.listAll(AppSettings.class);
+
+        if (appSettingsList.size() > 0) {
+
+            Intent act_authentication = new Intent(".act_authentication");
+            startActivity(act_authentication);
         }
     }
 }

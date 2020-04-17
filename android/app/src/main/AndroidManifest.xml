@@ -13,7 +13,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,InnerclassSeparator"
         tools:replace="android:icon">
-
         <!-- for sugar mobile.technology.password_manager.ORM -->
         <meta-data
             android:name="DATABASE"
@@ -35,8 +34,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- Passwords -->
+        </activity> <!-- Passwords -->
         <activity
             android:name=".activities.ActNotes"
             android:parentActivityName=".activities.ActHome"
@@ -67,17 +65,27 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <!--activity Settings-->
+        <!-- activity Settings -->
         <activity
             android:name=".activities.ActSettings"
             android:parentActivityName=".activities.ActHome"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name=".act_settings"/>
+                <action android:name=".act_settings" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+        <!-- activity authentication -->
+        <activity
+            android:name=".activities.ActAuthentication"
+            android:parentActivityName=".activities.ActHome"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name=".act_authentication" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 

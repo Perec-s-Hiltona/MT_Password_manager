@@ -63,5 +63,9 @@
     <string name="app_info">О приложении</string>
     <string name="app_version">Версия</string>
 
+    <!--authentication-->
+    <string name="input">Вход</string>
+    <string name="authentication">Авторизация</string>
+
 
 </resources>
