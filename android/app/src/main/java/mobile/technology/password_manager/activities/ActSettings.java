@@ -3,6 +3,9 @@ package mobile.technology.password_manager.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+
 import androidx.appcompat.widget.Toolbar;
 
 import mobile.technology.password_manager.R;
@@ -10,7 +13,7 @@ import mobile.technology.password_manager.R;
 public class ActSettings extends AppCompatActivity {
 
     private Toolbar toolbarSettings;
-    //TODO add liner layout
+    private LinearLayout lnlUpdateUserData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,5 +28,12 @@ public class ActSettings extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        lnlUpdateUserData = (LinearLayout)findViewById(R.id.lnl_update_user_data);
+        lnlUpdateUserData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //ToDo
+            }
+        });
     }
 }
