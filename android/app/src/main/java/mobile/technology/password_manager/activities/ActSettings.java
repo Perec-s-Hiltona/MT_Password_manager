@@ -10,6 +10,7 @@ import mobile.technology.password_manager.R;
 public class ActSettings extends AppCompatActivity {
 
     private Toolbar toolbarSettings;
+    //TODO add liner layout
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

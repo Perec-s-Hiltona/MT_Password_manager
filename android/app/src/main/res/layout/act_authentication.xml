@@ -53,16 +53,16 @@
                             android:layout_marginLeft="16dp"
                             android:layout_marginRight="16dp"
                             app:counterEnabled="true"
-                            app:counterMaxLength="1000"
+                            app:counterMaxLength="100"
                             app:errorEnabled="true">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/edtLogin"
+                                android:id="@+id/edtLoginAuthentication"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/login"
                                 android:inputType="text"
-                                android:maxLength="1000"
+                                android:maxLength="100"
                                 android:paddingStart="8dp"
                                 tools:ignore="RtlSymmetry" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -73,16 +73,16 @@
                             android:layout_marginLeft="16dp"
                             android:layout_marginRight="16dp"
                             app:counterEnabled="true"
-                            app:counterMaxLength="10000"
+                            app:counterMaxLength="100"
                             app:errorEnabled="true">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/edtPassword"
+                                android:id="@+id/edtPasswordAuthentication"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/password"
-                                android:inputType="text"
-                                android:maxLength="10000"
+                                android:inputType="textPassword"
+                                android:maxLength="100"
                                 android:paddingStart="8dp"
                                 tools:ignore="RtlSymmetry" />
                         </com.google.android.material.textfield.TextInputLayout>

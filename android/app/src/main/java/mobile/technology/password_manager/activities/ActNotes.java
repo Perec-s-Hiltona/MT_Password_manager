@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import mobile.technology.password_manager.ORM.AppSettings;
+import mobile.technology.password_manager.ORM.UserData;
 import mobile.technology.password_manager.ORM.NoteORM;
 import mobile.technology.password_manager.R;
 import mobile.technology.password_manager.adaptersCardViews.AdapterCVNote;
@@ -48,7 +48,7 @@ public class ActNotes extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         // fab
-        fabAddPassword = (FloatingActionButton)findViewById(R.id.fab_add_password);
+        fabAddPassword = (FloatingActionButton)findViewById(R.id.fab_add_note);
         YoYo.with(Techniques.Landing).duration(2000).repeat(0).playOn(fabAddPassword);
 
         //set param recyclerView
@@ -79,19 +79,19 @@ public class ActNotes extends AppCompatActivity {
     private void getAllNotes(){
         try {
 
-            List<AppSettings> appSettingsList = AppSettings.listAll(AppSettings.class);
+            List<UserData> userDataList = UserData.listAll(UserData.class);
 
-            if(appSettingsList.size() <= 0){
+            if(userDataList.size() <= 0){
 
                 final SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
-                alertDialog.setTitleText((String) getResources().getText(R.string.msg_add_main_password));
-                alertDialog.setContentText((String)getResources().getText(R.string.msg_main_password_desc));
+                alertDialog.setTitleText((String) getResources().getText(R.string.msg_add_user_data));
+                alertDialog.setContentText((String)getResources().getText(R.string.msg_user_data_desc));
                 alertDialog.setConfirmText((String) getResources().getText(R.string.msg_ok));
 
                 alertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
-                        Intent intentAddPasswordKey = new Intent(".act_add_main_password");
+                        Intent intentAddPasswordKey = new Intent(".act_add_user");
                         startActivity(intentAddPasswordKey);
 
                         alertDialog.dismissWithAnimation();
@@ -103,8 +103,8 @@ public class ActNotes extends AppCompatActivity {
 
                 String encryptedPassword = "";
 
-                for (AppSettings appSettings:appSettingsList){
-                    encryptedPassword = appSettings.getMainEncryptedPassword();
+                for (UserData userData : userDataList){
+                    encryptedPassword = userData.getPassword();
                 }
 
                 MasterEncrypt masterEncrypt = new MasterEncrypt();

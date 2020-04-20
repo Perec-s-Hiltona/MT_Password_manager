@@ -20,7 +20,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import mobile.technology.password_manager.ORM.AppSettings;
+import mobile.technology.password_manager.ORM.UserData;
 import mobile.technology.password_manager.ORM.NoteORM;
 import mobile.technology.password_manager.R;
 import mobile.technology.password_manager.general.MasterEncrypt;
@@ -61,7 +61,7 @@ public class ActAddNote extends AppCompatActivity implements  CompoundButton.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        AppSettings appSettings = new AppSettings();
+        UserData userData = new UserData();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_add_note);
@@ -117,7 +117,7 @@ public class ActAddNote extends AppCompatActivity implements  CompoundButton.OnC
         }
 
         // fab
-        fabSavePassword = (FloatingActionButton)findViewById(R.id.fab_save_password);
+        fabSavePassword = (FloatingActionButton)findViewById(R.id.fab_save_note_data);
         YoYo.with(Techniques.Landing).duration(2000).repeat(0).playOn(fabSavePassword);
         fabSavePassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,10 +159,10 @@ public class ActAddNote extends AppCompatActivity implements  CompoundButton.OnC
             // get main password from DB
             String encryptedMainPassword = " ";
 
-            List<AppSettings> appSettingsList = AppSettings.listAll(AppSettings.class);
+            List<UserData> userDataList = UserData.listAll(UserData.class);
 
-            for (AppSettings appSettings : appSettingsList){
-                encryptedMainPassword = appSettings.getMainEncryptedPassword();
+            for (UserData userData : userDataList){
+                encryptedMainPassword = userData.getPassword();
             }
             // decrypt main password
             String decryptedMainPassword = masterEncrypt.decryptData(encryptedMainPassword, masterEncrypt.getZeroPassword());
@@ -292,10 +292,10 @@ public class ActAddNote extends AppCompatActivity implements  CompoundButton.OnC
             // get main password from DB
             String encryptedMainPassword = " ";
 
-            List<AppSettings> appSettingsList = AppSettings.listAll(AppSettings.class);
+            List<UserData> userDataList = UserData.listAll(UserData.class);
 
-            for (AppSettings appSettings : appSettingsList){
-                encryptedMainPassword = appSettings.getMainEncryptedPassword();
+            for (UserData userData : userDataList){
+                encryptedMainPassword = userData.getPassword();
             }
             // decrypt main password
             String decryptedMainPassword = masterEncrypt.decryptData(encryptedMainPassword, masterEncrypt.getZeroPassword());

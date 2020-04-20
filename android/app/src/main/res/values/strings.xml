@@ -29,11 +29,17 @@
     <string name="show_personal_data">показать перс.данные</string>
     <string name="show_bank_data">показать банк.данные</string>
 
-    <!--Add password phrase-->
+    <!--Add user-->
+    <string name="user_data">Данные пользователя</string>
+    <string name="msg_user_data_assignment">Логин и Пароль - для входа в приложение\nТелефон и mail - для восстановления доступа</string>
+    <string name="msg_add_user_login">Создайте Логин</string>
+    <string name="phone">Номер телефона</string>
+    <string name="mail">Mail</string>
     <string name="password_key_desc">Главный пароль</string>
     <string name="type_main_password_key">MainPassword</string>
 
     <!--General-->
+    <string name="must_be">(обязательно)</string>
     <string name="add">Добавить</string>
     <string name="saved">Сохранено</string>
     <string name="no_data">Нет данных</string>
@@ -47,15 +53,15 @@
     <!--Message-->
     <string name="msg_add_data">Заполните поле</string>
     <string name="msg_ok">OK</string>
-    <string name="msg_add_main_password">Добавьте главный пароль</string>
-    <string name="msg_main_password_desc">Главный пароль необходим для доступа к записям</string>
+    <string name="msg_add_user_data">Добавьте учетные данные</string>
+    <string name="msg_user_data_desc">Учетные данные необходимы для доступа к записям,резервному копированию</string>
     <string name="msg_change_main_password">Измените главный пароль</string>
     <string name="msg_main_password_change_desc">Главный пароль должно быть:\n1) не менее 8 символов\n2) иметь буквы и цифры\n3) иметь символы,например, ! % № </string>
     <string name="msg_main_password_verified">Главный пароль надежный</string>
     <string name="msg_deleted">Удалено</string>
 
     <!--Settings-->
-    <string name="update_main_password">Изменить главный пароль</string>
+    <string name="update_user_data">Изменить данные учетной записи</string>
     <string name="use_fingerprint">Использовать отпечаток</string>
     <string name="use_fingerprint_desc">отпечаток пальца для входа в приложение</string>
     <string name="use_synchronization">Включить синхронизацию</string>

@@ -4,18 +4,12 @@
 
 package mobile.technology.password_manager.general;
 
-import android.app.Application;
-import android.content.Context;
 import android.util.Base64;
 
 import java.security.MessageDigest;
-import java.util.List;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-
-import mobile.technology.password_manager.ORM.AppSettings;
-import mobile.technology.password_manager.R;
 
 public class MasterEncrypt {
 

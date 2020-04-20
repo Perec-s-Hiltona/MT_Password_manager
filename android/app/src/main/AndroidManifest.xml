@@ -54,13 +54,14 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity> <!-- Add password phrase -->
+        </activity>
+        <!-- Add user -->
         <activity
-            android:name=".activities.ActAddMainPassword"
+            android:name=".activities.ActAddUser"
             android:parentActivityName=".activities.ActNotes"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name=".act_add_main_password" />
+                <action android:name=".act_add_user" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
