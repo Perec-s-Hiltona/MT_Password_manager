@@ -130,7 +130,7 @@
                             android:layout_marginLeft="16dp"
                             android:layout_marginRight="16dp"
                             app:counterEnabled="true"
-                            app:counterMaxLength="1000"
+                            app:passwordToggleEnabled="true"
                             app:errorEnabled="true">
 
                             <com.google.android.material.textfield.TextInputEditText
@@ -138,8 +138,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/password"
-                                android:inputType="text"
-                                android:maxLength="1000"
+                                android:inputType="textPassword"
                                 android:paddingStart="8dp"
                                 tools:ignore="RtlSymmetry" />
                         </com.google.android.material.textfield.TextInputLayout>
