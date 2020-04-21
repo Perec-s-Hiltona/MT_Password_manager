@@ -109,7 +109,7 @@ public class ActNotes extends AppCompatActivity {
 
                 MasterEncrypt masterEncrypt = new MasterEncrypt();
 
-                String decryptedMainPassword = masterEncrypt.decryptData(encryptedPassword,masterEncrypt.getZeroPassword());
+                String decryptedMainPassword = masterEncrypt.decryptData(encryptedPassword, masterEncrypt.getZeroPassword());
 
                 List <NoteORM> noteORMList = NoteORM.listAll(NoteORM.class);
                 cardViewNoteList = new ArrayList<>();
