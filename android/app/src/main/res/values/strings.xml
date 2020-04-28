@@ -49,6 +49,7 @@
     <string name="bank_data">Запись банковской информации</string>
     <string name="change">Изменить</string>
     <string name="delete">Удалить</string>
+    <string name="restore_password">Забыли пароль</string>
 
     <!--Message-->
     <string name="msg_add_data">Заполните поле</string>
