@@ -10,7 +10,6 @@ import android.widget.EditText;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Arrays;
@@ -20,6 +19,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import mobile.technology.password_manager.ORM.NoteORM;
 import mobile.technology.password_manager.ORM.UserData;
 import mobile.technology.password_manager.R;
+import mobile.technology.password_manager.general.MasterAuthorization;
 import mobile.technology.password_manager.general.MasterEncrypt;
 
 public class ActAddUser extends AppCompatActivity {
@@ -35,7 +35,8 @@ public class ActAddUser extends AppCompatActivity {
     private Boolean updateExistUser = false;
     private String oldPassword;
     private String newPassword;
-    MasterEncrypt masterEncrypt;
+
+    private MasterEncrypt masterEncrypt;
 
 
     @Override
@@ -76,7 +77,6 @@ public class ActAddUser extends AppCompatActivity {
         });
 
         getDataFromIntent();
-
     }
 
     private void saveUserData() throws Exception {
@@ -123,10 +123,14 @@ public class ActAddUser extends AppCompatActivity {
 
                     userData.save();
 
+                    MasterAuthorization.setIsAuthorization(true);
+
                 }else {
 
                     userData.update();
                     reencryptionData();
+
+                    MasterAuthorization.setIsAuthorization(true);
                 }
 
                 SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);
@@ -278,6 +282,7 @@ public class ActAddUser extends AppCompatActivity {
                     noteORM.setComment(masterEncrypt.encryptData(decrComment, newPassword));
 
                     noteORM.update();
+
                 }
 
             }catch (Exception ex){

@@ -23,6 +23,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import mobile.technology.password_manager.ORM.UserData;
 import mobile.technology.password_manager.ORM.NoteORM;
 import mobile.technology.password_manager.R;
+import mobile.technology.password_manager.general.MasterAuthorization;
 import mobile.technology.password_manager.general.MasterEncrypt;
 
 public class ActAddNote extends AppCompatActivity implements  CompoundButton.OnCheckedChangeListener{
@@ -47,16 +48,16 @@ public class ActAddNote extends AppCompatActivity implements  CompoundButton.OnC
 
     private CardView cardViewBankCard;
 
-    MasterEncrypt masterEncrypt;
+    private MasterEncrypt masterEncrypt;
 
-    String login, password, URL,
+    private String login, password, URL,
             bankName, cardNumber, cardHolder, cardExpiryMonth, cardExpiryYear, cardCVV, cardPIN,
             comment;
 
-    String itemID;
+    private String itemID;
     int intItemID;
-    NoteORM existNote;
-    Boolean updateExistNote = false;
+    private NoteORM existNote;
+    private Boolean updateExistNote = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,7 +148,6 @@ public class ActAddNote extends AppCompatActivity implements  CompoundButton.OnC
 
             cardViewBankCard.setVisibility(View.GONE);
             viewLine5.setVisibility(View.GONE);
-
         }
     }
 
@@ -205,10 +205,20 @@ public class ActAddNote extends AppCompatActivity implements  CompoundButton.OnC
 
         if(keyName.length() < 1){
 
-            SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
+            final SweetAlertDialog alertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
             alertDialog.setTitleText((String) getResources().getText(R.string.msg_add_data));
             alertDialog.setContentText((String)getResources().getText(R.string.password_name));
             alertDialog.setConfirmText((String) getResources().getText(R.string.msg_ok));
+
+            alertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                @Override
+                public void onClick(SweetAlertDialog sweetAlertDialog) {
+
+                    YoYo.with(Techniques.Tada).duration(1000).repeat(0).playOn(edtNoteName);
+
+                    alertDialog.dismissWithAnimation();
+                }
+            });
             alertDialog.show();
 
         } else {

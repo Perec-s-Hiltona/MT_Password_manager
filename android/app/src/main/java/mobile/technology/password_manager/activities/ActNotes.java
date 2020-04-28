@@ -22,6 +22,7 @@ import mobile.technology.password_manager.ORM.NoteORM;
 import mobile.technology.password_manager.R;
 import mobile.technology.password_manager.adaptersCardViews.AdapterCVNote;
 import mobile.technology.password_manager.cardViews.CardViewNote;
+import mobile.technology.password_manager.general.MasterAuthorization;
 import mobile.technology.password_manager.general.MasterEncrypt;
 
 public class ActNotes extends AppCompatActivity {
@@ -32,6 +33,7 @@ public class ActNotes extends AppCompatActivity {
     private List <CardViewNote> cardViewNoteList;
     private AdapterCVNote adapterCVNote;
     private RecyclerView recyclerView;
+    private MasterAuthorization masterAuthorization;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,8 @@ public class ActNotes extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.recycler_view_passwords);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        masterAuthorization = new MasterAuthorization();
 
         getAllNotes();
 

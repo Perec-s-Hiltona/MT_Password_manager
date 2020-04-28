@@ -9,6 +9,7 @@ public class UserData extends SugarRecord {
     private String password;
     private String phone;
     private String mail;
+    private String isAuthorized;
 
     public UserData(){
 
@@ -52,5 +53,13 @@ public class UserData extends SugarRecord {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getIsAuthorized() {
+        return isAuthorized;
+    }
+
+    public void setIsAuthorized(String isAuthorized) {
+        this.isAuthorized = isAuthorized;
     }
 }

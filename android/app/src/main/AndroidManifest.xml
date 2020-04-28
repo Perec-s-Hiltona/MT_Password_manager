@@ -82,6 +82,7 @@
             android:name=".activities.ActAuthentication"
             android:parentActivityName=".activities.ActHome"
             android:theme="@style/AppTheme.NoActionBar">
+
             <intent-filter>
                 <action android:name=".act_authentication" />
 
