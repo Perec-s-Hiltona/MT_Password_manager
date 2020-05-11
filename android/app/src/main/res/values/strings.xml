@@ -6,6 +6,10 @@
     <string name="my_notes_desc">список ваших паролей</string>
     <string name="settings">Настройки</string>
     <string name="settings_desc">синхронизация, доступ и т.д.</string>
+    <string name="perm_denied">Пожалуйста,предоставьте разрешения Приложению</string>
+    <string name="open_settings_perm">Откройте настройки и дайте разрешения Приложению</string>
+    <string name="perm_desc">Для восстановления пароля потребуются разрешения Приложению</string>
+    <string name="permissions">разрешения</string>
 
     <!--Add password-->
     <string name="login">Логин</string>
@@ -74,6 +78,8 @@
     <string name="input">Вход</string>
     <string name="authentication">Авторизация</string>
     <string name="msg_error_auth">Неверный логин или пароль</string>
+    <string name="send_to_mail">отправить на почту</string>
+    <string name="send_to_phone">отправить на телефон</string>
 
 
 </resources>
